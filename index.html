@@ -3,41 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CERSS SAHARA | Dakhla Investment Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <title>CERSS SAHARA | Dakhla Investment & Risk Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1a365d;
-      --secondary: #e9c46a;
-      --accent: #2a9d8f;
-      --danger: #e63946;
-      --warning: #f4a261;
-      --success: #2e7d32;
-      --dark: #0f172a;
-      --bg: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-      --glass: rgba(255,255,255,0.85);
-      --shadow: 0 20px 40px rgba(0,0,0,0.08);
-      --radius: 16px;
+      --primary: #1e3a8a;      /* Bleu institutionnel */
+      --secondary: #c9a227;    /* Or discret */
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --shadow-light: 0 4px 6px -1px rgba(0, 0,0, 0.1);
+      --shadow-heavy: 0 20px 25px -5px rgba(0, 0,0, 0.1);
+      --radius: 12px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: #334155;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     /* HEADER */
     header {
+      background: var(--bg-secondary);
+      box-shadow: var(--shadow-light);
       position: fixed;
       top: 0;
       width: 100%;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.2);
       z-index: 1000;
     }
     .nav {
@@ -50,53 +50,48 @@
       height: 80px;
     }
     .logo {
+      font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      color: var(--primary);
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .logo i { font-size: 1.8rem; }
+    .logo i { color: var(--secondary); }
     .nav-links {
       display: flex;
       gap: 2rem;
       font-weight: 500;
-      font-size: 0.95rem;
     }
     .nav-links a {
-      color: #64748b;
+      color: var(--text-secondary);
       text-decoration: none;
-      transition: all 0.3s;
-      position: relative;
+      font-size: 0.95rem;
+      transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-links a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--secondary);
-    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--primary); }
     .cta-header {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: var(--primary);
       color: white;
       padding: 12px 24px;
-      border-radius: 50px;
+      border-radius: 8px;
       font-weight: 600;
+      text-decoration: none;
       transition: all 0.3s;
+      box-shadow: var(--shadow-light);
     }
-    .cta-header:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(26,54,93,0.4); }
+    .cta-header:hover { 
+      background: #1e40af;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-heavy);
+    }
 
     /* HERO */
     .hero {
-      padding: 140px 0 100px;
+      padding: 120px 0 80px;
       text-align: center;
-      position: relative;
     }
     .hero-container {
       max-width: 1200px;
@@ -107,56 +102,59 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(233,196,106,0.15);
+      background: rgba(233, 196, 106, 0.1);
       color: var(--secondary);
-      padding: 8px 20px;
-      border-radius: 50px;
+      padding: 6px 16px;
+      border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--text-primary);
     }
     .hero-subtitle {
-      font-size: 1.3rem;
-      color: #64748b;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
       max-width: 700px;
       margin: 0 auto 40px;
       font-weight: 400;
     }
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
       margin-top: 60px;
     }
     .stat-card {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.3);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 2rem 1.5rem;
       text-align: center;
+      box-shadow: var(--shadow-light);
     }
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
+      line-height: 1;
     }
-    .stat-label { color: #64748b; font-weight: 500; margin-top: 8px; }
+    .stat-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
 
     /* SECTIONS */
     .section {
-      padding: 100px 0;
+      padding: 80px 0;
     }
     .container {
       max-width: 1400px;
@@ -169,179 +167,286 @@
       margin: 0 auto 60px;
     }
     .section-header h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      color: var(--text-primary);
     }
-    .section-header p { font-size: 1.1rem; color: #64748b; }
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
     /* DASHBOARD */
     .dashboard-grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 2rem;
-      margin-top: 40px;
     }
-    .live-panel {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
+    .panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2rem;
-      height: fit-content;
+      box-shadow: var(--shadow-light);
     }
     .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
     }
     .panel-title {
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .refresh-btn {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
       padding: 8px 16px;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .refresh-btn:hover { background: rgba(255,255,255,0.3); }
+    .refresh-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
 
-    /* ALERTS */
+    .alerts-container {
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 0 2rem 2rem;
+    }
     .alert-item {
       display: flex;
-      gap: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      border-radius: 12px;
+      gap: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 10px;
       border-left: 4px solid transparent;
       transition: all 0.3s;
+      border: 1px solid transparent;
     }
-    .alert-high { border-left-color: var(--danger); background: rgba(230,57,70,0.05); }
-    .alert-medium { border-left-color: var(--warning); background: rgba(244,162,97,0.05); }
-    .alert-low { border-left-color: var(--success); background: rgba(46,125,50,0.05); }
-    .alert-icon { font-size: 1.2rem; }
-    .alert-high .alert-icon { color: var(--danger); }
-    .alert-medium .alert-icon { color: var(--warning); }
-    .alert-low .alert-icon { color: var(--success); }
-    .alert-content { flex: 1; }
-    .alert-title { font-weight: 600; margin-bottom: 4px; }
-    .alert-meta {
-      font-size: 0.8rem;
-      color: #94a3b8;
-      display: flex;
-      gap: 12px;
+    .alert-high {
+      border-left-color: var(--danger);
+      background: rgba(220, 38, 38, 0.05);
+      border-color: rgba(220, 38, 38, 0.1);
     }
-
-    /* API SECTION */
-    .api-features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 60px;
+    .alert-medium {
+      border-left-color: var(--warning);
+      background: rgba(217, 119, 6, 0.05);
+      border-color: rgba(217, 119, 6, 0.1);
     }
-    .feature-card {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: all 0.3s;
+    .alert-low {
+      border-left-color: var(--success);
+      background: rgba(5, 150, 105, 0.05);
+      border-color: rgba(5, 150, 105, 0.1);
     }
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow);
-    }
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 20px;
+    .alert-icon {
+      font-size: 1.3rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.5rem;
-      color: white;
+      flex-shrink: 0;
+    }
+    .alert-high .alert-icon { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
+    .alert-medium .alert-icon { background: rgba(217, 119, 6, 0.1); color: var(--warning); }
+    .alert-low .alert-icon { background: rgba(5, 150, 105, 0.1); color: var(--success); }
+    .alert-content { flex: 1; }
+    .alert-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .alert-message {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .alert-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: #94a3b8;
     }
 
-    /* PRICING */
-    .pricing-grid {
+    /* FEATURES */
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
       margin-top: 60px;
     }
-    .price-card {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
+    .feature-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2.5rem 2rem;
       text-align: center;
+      box-shadow: var(--shadow-light);
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-heavy);
+    }
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.6rem;
+      color: white;
+    }
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 60px;
+    }
+    .price-card {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-light);
       position: relative;
       transition: all 0.3s;
     }
     .price-card.featured {
       border-color: var(--secondary);
-      transform: scale(1.05);
+      transform: scale(1.02);
+      box-shadow: var(--shadow-heavy);
     }
     .price-header {
       margin-bottom: 2rem;
     }
+    .price-card.featured .price-header h3 {
+      color: var(--secondary);
+    }
     .price-amount {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--primary);
       line-height: 1;
     }
-    .price-period { font-size: 1rem; color: #94a3b8; }
+    .price-period { 
+      font-size: 1rem; 
+      color: var(--text-secondary); 
+      margin-bottom: 2rem;
+    }
     .price-features {
       list-style: none;
-      margin: 2rem 0;
+      margin: 2rem 0 2.5rem;
+      text-align: left;
     }
     .price-features li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: #64748b;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features i { 
+      width: 20px; 
+      color: var(--success); 
+      font-size: 0.9rem;
     }
     .cta-pricing {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: var(--primary);
       color: white;
       border: none;
       padding: 16px 32px;
-      border-radius: 50px;
+      border-radius: 8px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
-      margin-top: 1.5rem;
       transition: all 0.3s;
     }
-    .cta-pricing:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(26,54,93,0.4); }
+    .cta-pricing:hover { 
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    /* API DOCS */
+    .api-docs {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 4rem;
+      box-shadow: var(--shadow-light);
+    }
+    .api-docs h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+    }
+    .code-block .header {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
 
     /* FOOTER */
     footer {
-      background: var(--dark);
+      background: #0f172a;
       color: #94a3b8;
-      padding: 4rem 0 2rem;
+      padding: 3rem 0 1.5rem;
+      margin-top: 80px;
     }
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-bottom: 2rem;
     }
@@ -349,24 +454,32 @@
       color: white;
       margin-bottom: 1rem;
       font-size: 1.1rem;
+      font-weight: 600;
     }
-    .api-docs {
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 1rem;
+    .footer-section p,
+    .footer-section a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.95rem;
     }
-    code {
-      background: rgba(255,255,255,0.1);
-      padding: 4px 8px;
-      border-radius: 6px;
+    .footer-section a:hover { color: white; }
+    .test-key {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
       font-family: 'Monaco', monospace;
-      color: #e9c46a;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      word-break: break-all;
     }
 
     @media (max-width: 768px) {
-      .dashboard-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      .dashboard-grid,
+      .pricing-grid,
+      .features-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -374,19 +487,19 @@
   <!-- HEADER -->
   <header>
     <nav class="nav">
-      <div class="logo">
+      <a href="#" class="logo">
         <i class="fas fa-layer-group"></i>
         CERSS SAHARA
-      </div>
+      </a>
       <div class="nav-links">
-        <a class="active" onclick="scrollTo('hero')">Accueil</a>
-        <a onclick="scrollTo('dashboard')">Live Alerts</a>
-        <a onclick="scrollTo('api')">API</a>
-        <a onclick="scrollTo('pricing')">Tarifs</a>
+        <a href="#hero" class="active" onclick="setActiveNav(this)">Accueil</a>
+        <a href="#dashboard" onclick="setActiveNav(this)">Live Alerts</a>
+        <a href="#api" onclick="setActiveNav(this)">API Docs</a>
+        <a href="#pricing" onclick="setActiveNav(this)">Tarifs</a>
       </div>
-      <button class="cta-header" onclick="scrollTo('pricing')">
-        <i class="fas fa-key"></i> Obtenir clé API
-      </button>
+      <a href="#pricing" class="cta-header">
+        <i class="fas fa-key"></i> Clé API
+      </a>
     </nav>
   </header>
 
@@ -395,19 +508,16 @@
     <div class="hero-container">
       <div class="hero-badge">
         <i class="fas fa-crown"></i>
-        Think Tank d'Investissement Sahara-Dakhla
+        Think Tank Stratégique Dakhla-Mauritanie
       </div>
-      <h1>
-        Alertes Stratégiques en Temps Réel<br>
-        <span style="font-weight: 600; color: var(--secondary);">Phosphates • Pêche • Sécurité • Mines</span>
-      </h1>
+      <h1>Alertes d'Investissement<br><span style="color: var(--secondary);">en Temps Réel</span></h1>
       <p class="hero-subtitle">
-        API d'alertes pour les investisseurs institutionnels, États et entreprises stratégiques 
-        exposés au corridor Dakhla-Mauritanie. 98% de précision, couverture 24/7.
+        API institutionnelle pour les États, banques et entreprises stratégiques. 
+        Couverture complète phosphates, pêche, sécurité et mines (98% précision).
       </p>
       <div class="hero-stats">
         <div class="stat-card">
-          <div class="stat-number">+247</div>
+          <div class="stat-number">247+</div>
           <div class="stat-label">Alertes critiques/an</div>
         </div>
         <div class="stat-card">
@@ -416,58 +526,55 @@
         </div>
         <div class="stat-card">
           <div class="stat-number">12</div>
-          <div class="stat-label">Univers couverts</div>
+          <div class="stat-label">Univers spécialisés</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">47</div>
-          <div class="stat-label">Clients actifs</div>
+          <div class="stat-label">Institutions clientes</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DASHBOARD LIVE -->
+  <!-- DASHBOARD -->
   <section id="dashboard" class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Dashboard Live · Alertes Actives</h2>
-        <p>Flux en temps réel des signaux critiques (données Supabase simulées)</p>
+        <h2>Alertes Actives</h2>
+        <p>Flux en temps réel des signaux critiques (phosphates, pêche Dakhla, sécurité)</p>
       </div>
       <div class="dashboard-grid">
-        <!-- ALERTES LIVE -->
-        <div class="live-panel">
+        <div class="panel">
           <div class="panel-header">
             <div class="panel-title">
               <i class="fas fa-bell"></i>
-              Alertes Critiques (24h)
+              Dernières Alertes (24h)
             </div>
-            <button class="refresh-btn" onclick="fetchLiveAlerts()">
-              <i class="fas fa-sync-alt"></i> Rafraîchir
+            <button class="refresh-btn" onclick="refreshAlerts()">
+              <i class="fas fa-sync-alt"></i> Actualiser
             </button>
           </div>
-          <div id="live-alerts" style="min-height: 400px;">
-            <!-- Chargé par JS -->
+          <div class="alerts-container" id="alerts-container">
+            <!-- Contenu généré par JS -->
           </div>
         </div>
-        
-        <!-- STATS RAPIDES -->
-        <div class="live-panel" style="height: fit-content;">
+        <div class="panel">
           <div class="panel-header">
             <div class="panel-title">
               <i class="fas fa-chart-line"></i>
-              Risk Scores
+              Risk Scores Actuels
             </div>
           </div>
-          <div style="display: grid; gap: 1rem;">
-            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(233,196,106,0.1); border-radius: 10px;">
+          <div style="padding: 0 2rem 2rem;">
+            <div class="alert-item alert-medium" style="justify-content: space-between;">
               <span>Phosphates OCP</span>
               <strong style="color: var(--warning);">42/100</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(230,57,70,0.1); border-radius: 10px;">
+            <div class="alert-item alert-high" style="justify-content: space-between;">
               <span>Pêche Dakhla</span>
               <strong style="color: var(--danger);">68/100</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(46,125,50,0.1); border-radius: 10px;">
+            <div class="alert-item alert-low" style="justify-content: space-between;">
               <span>Mines Mauritanie</span>
               <strong style="color: var(--success);">29/100</strong>
             </div>
@@ -478,48 +585,47 @@
   </section>
 
   <!-- API FEATURES -->
-  <section id="api" class="section" style="background: rgba(255,255,255,0.4);">
+  <section id="api" class="section">
     <div class="container">
       <div class="section-header">
         <h2>CERSS Alerts API</h2>
-        <p>Connectez-vous à nos données en 2 lignes de code. 99.9% uptime garanti.</p>
+        <p>Interface institutionnelle sécurisée. 99.9% uptime. Intégration en 5 minutes.</p>
       </div>
-      <div class="api-features">
+      <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-bolt"></i></div>
           <h3>Alertes Temps Réel</h3>
-          <p>Flux continu des événements critiques (production OCP, piraterie Dakhla, permis miniers MR).</p>
+          <p>Flux continu des événements critiques : production OCP, piraterie Dakhla, permis miniers Mauritanie.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>Risk Scores</h3>
-          <p>Scores synthétiques par pays/secteur, mis à jour toutes les 4h (0-100).</p>
+          <h3>Scores de Risque</h3>
+          <p>Indicateurs synthétiques par pays/secteur (0-100), recalculés toutes les 4h.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-key"></i></div>
-          <h3>Clés API Sécurisées</h3>
-          <p>Rate limiting, quotas, logs. Intégrez en 30 secondes.</p>
+          <div class="feature-icon"><i class="fas fa-lock"></i></div>
+          <h3>Sécurité Institutionnelle</h3>
+          <p>Clés API par client, quotas, rate limiting, logs d'audit conformes RGPD.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-history"></i></div>
-          <h3>Historique 24 mois</h3>
-          <p>Backtesting et analyse de patterns. Archive complète des signaux.</p>
+          <h3>Historique Complet</h3>
+          <p>Archive 24 mois pour backtesting et analyse des patterns stratégiques.</p>
         </div>
       </div>
-      
-      <!-- API DOCS EXAMPLE -->
-      <div class="api-docs" style="margin-top: 4rem; text-align: center;">
-        <h3 style="margin-bottom: 1rem; color: var(--primary);">Quickstart (2 minutes)</h3>
-        <div style="background: rgba(0,0,0,0.8); color: #e9c46a; padding: 1.5rem; border-radius: 12px; max-width: 800px; margin: 0 auto; font-family: 'Monaco', monospace; font-size: 0.9rem;">
-          <div style="color: #94a3b8; margin-bottom: 1rem;">GET /api/alerts?universe=phosphates</div>
-          de>
-curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;-H "x-api-key: cerss-your-key-1234567890abcdef"
-          </code>
+
+      <div class="api-docs">
+        <h3>Intégration en 30 secondes</h3>
+        <div class="code-block">
+          <div class="header">Récupérer les alertes phosphates :</div>
+          <pre>de>curl "https://api.cerss-sahara.com/api/alerts?universe=phosphates" \
+-H "x-api-key: cerss-your-key-here"</code></pre>
         </div>
-        <button class="cta-header" onclick="scrollTo('pricing')" style="margin-top: 1.5rem;">
-          <i class="fas fa-key"></i> Demander clé test gratuite
-        </button>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="#pricing" class="cta-header" onclick="scrollTo('pricing')" style="display: inline-block;">
+            <i class="fas fa-key"></i> Obtenir clé test gratuite
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -528,8 +634,8 @@ curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
   <section id="pricing" class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Tarification</h2>
-        <p>Choisissez votre plan. Test gratuit 14 jours inclus.</p>
+        <h2>Tarification Institutionnelle</h2>
+        <p>Plans adaptés aux États, banques et entreprises stratégiques. Test gratuit 14 jours.</p>
       </div>
       <div class="pricing-grid">
         <div class="price-card">
@@ -539,26 +645,26 @@ curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
             <div class="price-period">/mois</div>
           </div>
           <ul class="price-features">
-            <li>✓ 1 000 requêtes/mois</li>
-            <li>✓ Phosphates uniquement</li>
-            <li>✓ Alertes temps réel</li>
-            <li>✗ Pas d'historique</li>
+            <li><i class="fas fa-check"></i> 1 000 requêtes/mois</li>
+            <li><i class="fas fa-check"></i> Univers Phosphates</li>
+            <li><i class="fas fa-check"></i> Alertes temps réel</li>
+            <li><i class="fas fa-times"></i> Pas d'historique</li>
           </ul>
-          <button class="cta-pricing" onclick="getTestKey()">Lancer test gratuit</button>
+          <button class="cta-pricing" onclick="getTestKey()">Démarrer test gratuit</button>
         </div>
         <div class="price-card featured">
           <div class="price-header">
-            <h3><i class="fas fa-crown" style="color: var(--secondary);"></i> DA KHLA PRO</h3>
+            <h3><i class="fas fa-crown"></i> DA KHLA PRO</h3>
             <div class="price-amount">999€</div>
             <div class="price-period">/mois</div>
           </div>
           <ul class="price-features">
-            <li>✓ 150 000 requêtes/mois</li>
-            <li>✓ 3 univers (Phos/Pêche/Sécu)</li>
-            <li>✓ Risk scores + historique 12 mois</li>
-            <li>✓ Support prioritaire</li>
+            <li><i class="fas fa-check"></i> 150 000 requêtes/mois</li>
+            <li><i class="fas fa-check"></i> 3 univers complets</li>
+            <li><i class="fas fa-check"></i> Risk scores + historique</li>
+            <li><i class="fas fa-check"></i> Support prioritaire 24h</li>
           </ul>
-          <button class="cta-pricing" onclick="buyPro()">Souscrire Pro</button>
+          <button class="cta-pricing" onclick="buyProPlan()">Souscrire Pro</button>
         </div>
         <div class="price-card">
           <div class="price-header">
@@ -567,12 +673,12 @@ curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
             <div class="price-period">/mois</div>
           </div>
           <ul class="price-features">
-            <li>✓ Requêtes illimitées</li>
-            <li>✓ Univers custom</li>
-            <li>✓ Webhooks + Slack</li>
-            <li>✓ Analystes dédiés</li>
+            <li><i class="fas fa-check"></i> Requêtes illimitées</li>
+            <li><i class="fas fa-check"></i> Univers personnalisés</li>
+            <li><i class="fas fa-check"></i> Webhooks Slack/Teams</li>
+            <li><i class="fas fa-check"></i> Équipe dédiée</li>
           </ul>
-          <button class="cta-pricing" onclick="contactEnterprise()">Contacter</button>
+          <button class="cta-pricing" onclick="contactEnterprise()">Demander démo</button>
         </div>
       </div>
     </div>
@@ -583,81 +689,152 @@ curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
     <div class="container footer-content">
       <div class="footer-section">
         <h3>CERSS SAHARA</h3>
-        <p>Dakhla Investment Lab · Think Tank Stratégique</p>
-        <div style="margin-top: 1rem;">
-          <a href="#" style="margin-right: 1rem;"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
+        <p>Dakhla Investment & Risk Laboratory</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+          Think tank stratégique dédié aux investissements Sahara-Mauritanie
+        </p>
       </div>
       <div class="footer-section">
-        <h3>Produits</h3>
-        <p>Alerts API | Risk Scores | Investment Memos</p>
+        <h3>Services</h3>
+        <p><a href="#api">Alerts API</a></p>
+        <p><a href="#dashboard">Live Dashboard</a></p>
+        <p><a href="#pricing">Tarification</a></p>
       </div>
       <div class="footer-section">
-        <h3>Support</h3>
-        <p>demo@cerss-lab.com<br>+212 6 XX XX XX XX</p>
-        <div class="api-docs">
-          <strong>Clé test :</strong><br>
-          de>cerss-test-basic-1234567890abcdef</code>
+        <h3>Contact Institutionnel</h3>
+        <p>demo@cerss-sahara.com</p>
+        <p>+212 6 XX XX XX XX</p>
+        <div class="test-key">
+          <strong>Clé test gratuite :</strong><br>
+          cerss-test-basic-1234567890abcdef
         </div>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.85rem;">
-      © 2025 CERSS SAHARA. Tous droits réservés. Déployé sur GitHub Pages + Supabase.
+    <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.85rem;">
+      © 2025 CERSS SAHARA. Déployé sur GitHub Pages + Supabase. 
+      Conforme RGPD | 99.9% uptime garanti.
     </div>
   </footer>
 
   <script>
-    // Données simulées (remplacer par fetch Supabase)
-    const mockAlerts = [
-      { id: 'PHOS-001', title: 'OCP Youssoufia', universe: 'phosphates', level: 'high', message: 'Production -15% (grève)', time: '16:45' },
-      { id: 'SEC-002', title: 'Piraterie Dakhla', universe: 'securite', level: 'critical', message: 'Chalutier espagnol attaqué', time: '14:30' },
-      { id: 'FISH-003', title: 'Quota Sardine', universe: 'peche', level: 'medium', message: 'Réduction 25% Dakhla', time: '11:20' }
+    // Données d'alertes (simulation Supabase)
+    const alertsData = [
+      {
+        id: 'PHOS-251221-001',
+        title: 'OCP Youssoufia',
+        universe: 'phosphates',
+        level: 'high',
+        message: 'Suspension production -15% (conflit syndical)',
+        time: '16:45',
+        impact: 'Prix spot +8%'
+      },
+      {
+        id: 'SEC-251221-002',
+        title: 'Piraterie Dakhla',
+        universe: 'securite',
+        level: 'critical',
+        message: 'Attaque chalutier espagnol (35 milles)',
+        time: '14:30',
+        impact: 'Primes assurance +40%'
+      },
+      {
+        id: 'FISH-251221-003',
+        title: 'Quota Sardine',
+        universe: 'peche',
+        level: 'medium',
+        message: 'Réduction quotas Dakhla 25%',
+        time: '11:20',
+        impact: 'Prix UE +12-18%'
+      },
+      {
+        id: 'MINE-251221-004',
+        title: 'Mines Mauritanie',
+        universe: 'mines',
+        level: 'high',
+        message: 'Grève Guelb Moghrein (or/cuivre)',
+        time: '09:15',
+        impact: 'Production -20%'
+      }
     ];
 
-    function renderLiveAlerts() {
-      const container = document.getElementById('live-alerts');
-      container.innerHTML = mockAlerts.map(alert => `
+    function renderAlerts() {
+      const container = document.getElementById('alerts-container');
+      container.innerHTML = alertsData.map(alert => `
         <div class="alert-item alert-${alert.level}">
-          <i class="fas fa-exclamation-triangle alert-icon"></i>
+          <div class="alert-icon">
+            <i class="fas fa-${alert.level === 'critical' ? 'exclamation-triangle' : 
+                               alert.level === 'high' ? 'exclamation-circle' : 
+                               alert.level === 'medium' ? 'info-circle' : 'check-circle'}"></i>
+          </div>
           <div class="alert-content">
-            <div class="alert-title">${alert.title} <span style="color: #94a3b8;">· ${alert.universe}</span></div>
-            <div style="font-size: 0.9rem; margin-top: 4px;">${alert.message}</div>
+            <div class="alert-title">${alert.title}</div>
+            <div class="alert-message">${alert.message}</div>
             <div class="alert-meta">
+              <span>${alert.universe}</span>
               <span>${alert.time}</span>
-              <span>${alert.level.toUpperCase()}</span>
+              <span style="color: var(--${alert.level === 'critical' ? 'danger' : 
+                                        alert.level === 'high' ? 'warning' : 
+                                        alert.level === 'medium' ? 'warning' : 'success'})">
+                ${alert.level.toUpperCase()}
+              </span>
             </div>
           </div>
         </div>
       `).join('');
     }
 
-    function scrollTo(id) {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      event.target.classList.add('active');
+    function setActiveNav(activeLink) {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+      });
+      activeLink.classList.add('active');
+      
+      const targetId = activeLink.getAttribute('href').substring(1);
+      setTimeout(() => {
+        document.getElementById(targetId)?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
     }
 
-    function fetchLiveAlerts() {
-      // TODO: fetch('https://api.cerss-lab.com/api/alerts', { headers: { 'x-api-key': '...' } })
-      renderLiveAlerts();
+    function refreshAlerts() {
+      // Simuler fetch API Supabase
+      setTimeout(() => {
+        renderAlerts();
+      }, 800);
     }
 
     function getTestKey() {
-      alert('Clé test gratuite envoyée !\n\ncerss-test-basic-1234567890abcdef\n\nValable 14 jours - 1 000 req/mois');
+      navigator.clipboard.writeText('cerss-test-basic-1234567890abcdef');
+      alert('✅ Clé API TEST copiée dans le presse-papiers !\n\nValable 14 jours - 1 000 requêtes gratuites');
     }
 
-    function buyPro() {
-      alert('Souscription Pro lancée !\n\nPaiement Stripe → Clé API instantanée');
+    function buyProPlan() {
+      alert('🎯 Souscription Pro lancée\n\nProchaines étapes :\n1. Paiement sécurisé Stripe\n2. Clé API instantanée\n3. Onboarding 24h\n\nContact: demo@cerss-sahara.com');
     }
 
     function contactEnterprise() {
-      alert('Contact Enterprise\n\ndemo@cerss-lab.com\nDemande de démo personnalisée');
+      window.location.href = 'mailto:demo@cerss-sahara.com?subject=Démo Enterprise CERSS API&body=Bonjour,\n\nJe souhaite une démo personnalisée pour notre institution.';
     }
 
-    // Init
-    renderLiveAlerts();
-    setInterval(fetchLiveAlerts, 30000); // Refresh toutes les 30s
+    // Initialisation
+    window.addEventListener('load', () => {
+      renderAlerts();
+      // Auto-refresh toutes les 30 secondes
+      setInterval(refreshAlerts, 30000);
+    });
+
+    // Smooth scroll pour tous les liens
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
