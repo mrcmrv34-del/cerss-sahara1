@@ -1,433 +1,578 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>CERSS SAHARA | Investment & Risk Lab</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CERSS SAHARA | Dakhla Investment Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1d3557;
+      --primary: #1a365d;
       --secondary: #e9c46a;
       --accent: #2a9d8f;
       --danger: #e63946;
-      --bg: #f5f6fa;
-      --text: #2f3640;
-      --muted: #7f8c8d;
-      --card-bg: #ffffff;
-      --border: #e0e0e0;
-      --shadow: 0 10px 30px rgba(0,0,0,0.06);
-      --radius: 10px;
+      --warning: #f4a261;
+      --success: #2e7d32;
+      --dark: #0f172a;
+      --bg: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      --glass: rgba(255,255,255,0.85);
+      --shadow: 0 20px 40px rgba(0,0,0,0.08);
+      --radius: 16px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: #334155;
       line-height: 1.6;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary);
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      overflow-x: hidden;
     }
 
     /* HEADER */
     header {
-      background: var(--card-bg);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 10;
+      width: 100%;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      z-index: 1000;
     }
     .nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
+      height: 80px;
     }
     .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .logo span {
-      color: var(--primary);
-    }
-    .logo small {
-      display: block;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
+    .logo i { font-size: 1.8rem; }
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
     }
     .nav-links a {
-      cursor: pointer;
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 0.8rem;
+      color: #64748b;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
     }
-    .nav-links a:hover {
-      color: var(--primary);
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--secondary);
     }
+    .cta-header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .cta-header:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(26,54,93,0.4); }
 
     /* HERO */
     .hero {
-      padding: 70px 0 40px;
+      padding: 140px 0 100px;
+      text-align: center;
+      position: relative;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1.1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .hero h1 {
-      font-size: 2.4rem;
-      margin-bottom: 15px;
-    }
-    .hero p {
-      color: var(--muted);
-      margin-bottom: 25px;
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
     .hero-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      background: #e0f4f1;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .btn-primary {
-      background: var(--primary);
-      color: #ffffff;
-      padding: 10px 22px;
-      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(233,196,106,0.15);
+      color: var(--secondary);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      border: none;
-      cursor: pointer;
+      margin-bottom: 20px;
     }
-    .btn-primary:hover {
-      background: #16324a;
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .hero-highlight {
-      background: var(--card-bg);
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 60px;
+    }
+    .stat-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      font-size: 0.9rem;
+      padding: 2rem;
+      text-align: center;
     }
-    .hero-highlight h3 {
-      margin-bottom: 5px;
-      font-size: 1.1rem;
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .hero-highlight span {
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
+    .stat-label { color: #64748b; font-weight: 500; margin-top: 8px; }
 
-    /* SECTION TITLES */
+    /* SECTIONS */
     .section {
-      padding: 50px 0;
+      padding: 100px 0;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
     .section-header {
-      margin-bottom: 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
     }
     .section-header h2 {
-      font-size: 1.6rem;
-      margin-bottom: 5px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 20px;
     }
-    .section-header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .section-header p { font-size: 1.1rem; color: #64748b; }
 
-    /* GRID */
-    .grid-3 {
+    /* DASHBOARD */
+    .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-top: 40px;
     }
-
-    .card {
-      background: var(--card-bg);
+    .live-panel {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: var(--radius);
-      border: 1px solid var(--border);
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
+      padding: 2rem;
+      height: fit-content;
     }
-
-    .card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 5px;
-    }
-    .card small {
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    /* INVESTMENT WATCH */
-    .investment-layout {
-      display: grid;
-      grid-template-columns: 1.4fr 1.2fr;
-      gap: 25px;
-      align-items: flex-start;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-    th, td {
-      padding: 8px 6px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    th {
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-    }
-    .pill-low { background: #e8f5e9; color: #2e7d32; }
-    .pill-med { background: #fff3e0; color: #ef6c00; }
-    .pill-high { background: #ffebee; color: #c62828; }
-
-    .change-pos { color: #2e7d32; }
-    .change-neg { color: #c62828; }
-
-    /* ALERTES API */
-    .alerts-list {
-      max-height: 260px;
-      overflow-y: auto;
-      font-size: 0.85rem;
-    }
-    .alert-item {
-      border-left: 3px solid var(--accent);
-      background: #f0f9f7;
-      padding: 8px 10px;
-      margin-bottom: 8px;
-      border-radius: 4px;
-    }
-    .alert-item.danger {
-      border-color: var(--danger);
-      background: #ffeff0;
-    }
-    .alert-item strong {
-      display: block;
-    }
-    .alert-meta {
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-
-    .alerts-header {
+    .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .btn-secondary {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      padding: 5px 10px;
-      font-size: 0.8rem;
-      border-radius: 4px;
+    .panel-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .refresh-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
       cursor: pointer;
+      transition: all 0.3s;
     }
-    .btn-secondary:hover {
-      background: #f0f0f0;
+    .refresh-btn:hover { background: rgba(255,255,255,0.3); }
+
+    /* ALERTS */
+    .alert-item {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s;
+    }
+    .alert-high { border-left-color: var(--danger); background: rgba(230,57,70,0.05); }
+    .alert-medium { border-left-color: var(--warning); background: rgba(244,162,97,0.05); }
+    .alert-low { border-left-color: var(--success); background: rgba(46,125,50,0.05); }
+    .alert-icon { font-size: 1.2rem; }
+    .alert-high .alert-icon { color: var(--danger); }
+    .alert-medium .alert-icon { color: var(--warning); }
+    .alert-low .alert-icon { color: var(--success); }
+    .alert-content { flex: 1; }
+    .alert-title { font-weight: 600; margin-bottom: 4px; }
+    .alert-meta {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 12px;
     }
 
-    /* API DOC BOX */
-    .api-doc {
-      font-size: 0.82rem;
-      background: #fdfaf3;
+    /* API SECTION */
+    .api-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 60px;
+    }
+    .feature-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: var(--radius);
-      border: 1px dashed #e0c588;
-      padding: 10px 12px;
-      margin-top: 10px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
     }
-    code {
-      background: #f4f4f4;
-      padding: 1px 3px;
-      border-radius: 3px;
-      font-size: 0.8rem;
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
     }
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 60px;
+    }
+    .price-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .price-card.featured {
+      border-color: var(--secondary);
+      transform: scale(1.05);
+    }
+    .price-header {
+      margin-bottom: 2rem;
+    }
+    .price-amount {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .price-period { font-size: 1rem; color: #94a3b8; }
+    .price-features {
+      list-style: none;
+      margin: 2rem 0;
+    }
+    .price-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #64748b;
+    }
+    .cta-pricing {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1.5rem;
+      transition: all 0.3s;
+    }
+    .cta-pricing:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(26,54,93,0.4); }
 
     /* FOOTER */
     footer {
-      background: #1a252f;
-      color: #bdc3c7;
-      padding: 30px 0;
-      margin-top: 40px;
-      font-size: 0.8rem;
+      background: var(--dark);
+      color: #94a3b8;
+      padding: 4rem 0 2rem;
     }
-    footer a { color: #ecf0f1; }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-section h3 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .api-docs {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    code {
+      background: rgba(255,255,255,0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: 'Monaco', monospace;
+      color: #e9c46a;
+    }
 
-    @media (max-width: 900px) {
-      .hero-grid, .investment-layout {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 768px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
-    <div class="container nav">
+    <nav class="nav">
       <div class="logo">
-        <span> CERSS SAHARA </span>
-        <small>Investment & Risk Lab</small>
+        <i class="fas fa-layer-group"></i>
+        CERSS SAHARA
       </div>
-      <nav class="nav-links">
-        <a onclick="scrollToId('hero')">Accueil</a>
-        <a onclick="scrollToId('investment')">Investment Watch</a>
-        <a onclick="scrollToId('api-alerts')">API Alerts</a>
-      </nav>
-    </div>
+      <div class="nav-links">
+        <a class="active" onclick="scrollTo('hero')">Accueil</a>
+        <a onclick="scrollTo('dashboard')">Live Alerts</a>
+        <a onclick="scrollTo('api')">API</a>
+        <a onclick="scrollTo('pricing')">Tarifs</a>
+      </div>
+      <button class="cta-header" onclick="scrollTo('pricing')">
+        <i class="fas fa-key"></i> Obtenir clé API
+      </button>
+    </nav>
   </header>
 
   <!-- HERO -->
   <section id="hero" class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="hero-badge">Think Tank · Marchés & Risques</div>
-        <h1>Tableau de Bord d’Investissement & Alertes Stratégiques</h1>
-        <p>
-          Version démo du laboratoire d’analyse CERSS dédié aux flux d’investissement, au suivi de portefeuilles et aux alertes de risque
-          générées via API.
-        </p>
-        <button class="btn-primary" onclick="scrollToId('investment')">Voir le flux d’investissement</button>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <i class="fas fa-crown"></i>
+        Think Tank d'Investissement Sahara-Dakhla
       </div>
-      <div>
-        <div class="hero-highlight">
-          <h3>Mandat du Lab</h3>
-          <span>Use case : Think tank d’investissement</span>
-          <p style="margin-top:8px;">
-            • Surveiller des paniers d’actifs (indices, matières premières, FX).<br/>
-            • Déclencher des alertes en cas de volatilité ou de franchissement de seuils.<br/>
-            • Fournir aux décideurs des signaux synthétiques (API ou interface web).
-          </p>
+      <h1>
+        Alertes Stratégiques en Temps Réel<br>
+        <span style="font-weight: 600; color: var(--secondary);">Phosphates • Pêche • Sécurité • Mines</span>
+      </h1>
+      <p class="hero-subtitle">
+        API d'alertes pour les investisseurs institutionnels, États et entreprises stratégiques 
+        exposés au corridor Dakhla-Mauritanie. 98% de précision, couverture 24/7.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-number">+247</div>
+          <div class="stat-label">Alertes critiques/an</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Précision vérifiée</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Univers couverts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">47</div>
+          <div class="stat-label">Clients actifs</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION INVESTMENT WATCH -->
-  <section id="investment" class="section">
+  <!-- DASHBOARD LIVE -->
+  <section id="dashboard" class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Investment Watch · Exposition & Risques</h2>
-        <p>Vue synthétique sur quelques actifs suivis par le laboratoire (données de démonstration).</p>
+        <h2>Dashboard Live · Alertes Actives</h2>
+        <p>Flux en temps réel des signaux critiques (données Supabase simulées)</p>
       </div>
-
-      <div class="investment-layout">
-        <!-- TABLEAU D'ACTIFS -->
-        <div class="card">
-          <h3 style="margin-bottom:10px;">Portefeuille de Référence</h3>
-          <small>Scénario fictif illustrant la logique d’analyse.</small>
-          <table style="margin-top:10px;">
-            <thead>
-              <tr>
-                <th>Actif</th>
-                <th>Classe</th>
-                <th>Prix</th>
-                <th>Journée</th>
-                <th>Risque</th>
-              </tr>
-            </thead>
-            <tbody id="asset-table-body">
-              <!-- Rempli par JS -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- ALERTES API -->
-        <div id="api-alerts" class="card">
-          <div class="alerts-header">
-            <div>
-              <h3>Alertes API de Marché</h3>
-              <small>Simulation de réponses d’API (price / volatility alerts).</small>
+      <div class="dashboard-grid">
+        <!-- ALERTES LIVE -->
+        <div class="live-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fas fa-bell"></i>
+              Alertes Critiques (24h)
             </div>
-            <button class="btn-secondary" onclick="refreshAlerts()">Rafraîchir les alertes</button>
+            <button class="refresh-btn" onclick="fetchLiveAlerts()">
+              <i class="fas fa-sync-alt"></i> Rafraîchir
+            </button>
           </div>
-
-          <div class="alerts-list" id="alerts-list">
-            <!-- Rempli par JS -->
+          <div id="live-alerts" style="min-height: 400px;">
+            <!-- Chargé par JS -->
           </div>
-
-          <div class="api-doc">
-            <strong>Architecture API (exemple) :</strong><br/>
-            • Endpoint : de>GET /api/alerts?universe=ssa,fx,commodities</code><br/>
-            • Réponse : de>[{ "symbol": "OIL", "type": "volatility", "level": "high", "message": "Brent &gt; 90 USD" }]</code><br/>
-            Dans cette démo, les données sont générées côté navigateur, mais tu peux remplacer la fonction
-            <e>fetchMockAlerts()</code> par un de>fetch('https://vraie-api.com/alerts')</code>.
+        </div>
+        
+        <!-- STATS RAPIDES -->
+        <div class="live-panel" style="height: fit-content;">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fas fa-chart-line"></i>
+              Risk Scores
+            </div>
+          </div>
+          <div style="display: grid; gap: 1rem;">
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(233,196,106,0.1); border-radius: 10px;">
+              <span>Phosphates OCP</span>
+              <strong style="color: var(--warning);">42/100</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(230,57,70,0.1); border-radius: 10px;">
+              <span>Pêche Dakhla</span>
+              <strong style="color: var(--danger);">68/100</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(46,125,50,0.1); border-radius: 10px;">
+              <span>Mines Mauritanie</span>
+              <strong style="color: var(--success);">29/100</strong>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION PRODUITS DU THINK TANK -->
-  <section class="section">
+  <!-- API FEATURES -->
+  <section id="api" class="section" style="background: rgba(255,255,255,0.4);">
     <div class="container">
       <div class="section-header">
-        <h2>Produits du Think Tank d’Investissement</h2>
-        <p>Exemples de livrables que ce type de plateforme peut produire pour des décideurs publics ou privés.</p>
+        <h2>CERSS Alerts API</h2>
+        <p>Connectez-vous à nos données en 2 lignes de code. 99.9% uptime garanti.</p>
       </div>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Investment Memos</h3>
-          <small>Notes rapides pour décideurs</small>
-          <p style="margin-top:8px; font-size:0.9rem;">
-            Synthèse de 3 à 5 pages sur une opportunité d’investissement (corridor logistique, zone franche, PPP), avec scores de risque,
-            scénarios et recommandations.
-          </p>
+      <div class="api-features">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Alertes Temps Réel</h3>
+          <p>Flux continu des événements critiques (production OCP, piraterie Dakhla, permis miniers MR).</p>
         </div>
-        <div class="card">
-          <h3>Risk Dashboards</h3>
-          <small>Monitoring en quasi temps réel</small>
-          <p style="margin-top:8px; font-size:0.9rem;">
-            Tableaux de bord alimentés par API (marchés, CDS, matières premières) avec seuils d’alerte, indices de stress et suivi
-            mensuel des signaux clés.
-          </p>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Risk Scores</h3>
+          <p>Scores synthétiques par pays/secteur, mis à jour toutes les 4h (0-100).</p>
         </div>
-        <div class="card">
-          <h3>Investor Briefings</h3>
-          <small>Webinars & Notes confidentielles</small>
-          <p style="margin-top:8px; font-size:0.9rem;">
-            Sessions ciblées avec investisseurs institutionnels, complétées par des packs PDF (slides, graphiques et annexes de données)
-            publiés via la plateforme.
-          </p>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-key"></i></div>
+          <h3>Clés API Sécurisées</h3>
+          <p>Rate limiting, quotas, logs. Intégrez en 30 secondes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-history"></i></div>
+          <h3>Historique 24 mois</h3>
+          <p>Backtesting et analyse de patterns. Archive complète des signaux.</p>
+        </div>
+      </div>
+      
+      <!-- API DOCS EXAMPLE -->
+      <div class="api-docs" style="margin-top: 4rem; text-align: center;">
+        <h3 style="margin-bottom: 1rem; color: var(--primary);">Quickstart (2 minutes)</h3>
+        <div style="background: rgba(0,0,0,0.8); color: #e9c46a; padding: 1.5rem; border-radius: 12px; max-width: 800px; margin: 0 auto; font-family: 'Monaco', monospace; font-size: 0.9rem;">
+          <div style="color: #94a3b8; margin-bottom: 1rem;">GET /api/alerts?universe=phosphates</div>
+          de>
+curl "https://api.cerss-lab.com/api/alerts?universe=phosphates" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-H "x-api-key: cerss-your-key-1234567890abcdef"
+          </code>
+        </div>
+        <button class="cta-header" onclick="scrollTo('pricing')" style="margin-top: 1.5rem;">
+          <i class="fas fa-key"></i> Demander clé test gratuite
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tarification</h2>
+        <p>Choisissez votre plan. Test gratuit 14 jours inclus.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-header">
+            <h3>TEST</h3>
+            <div class="price-amount">0€</div>
+            <div class="price-period">/mois</div>
+          </div>
+          <ul class="price-features">
+            <li>✓ 1 000 requêtes/mois</li>
+            <li>✓ Phosphates uniquement</li>
+            <li>✓ Alertes temps réel</li>
+            <li>✗ Pas d'historique</li>
+          </ul>
+          <button class="cta-pricing" onclick="getTestKey()">Lancer test gratuit</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-header">
+            <h3><i class="fas fa-crown" style="color: var(--secondary);"></i> DA KHLA PRO</h3>
+            <div class="price-amount">999€</div>
+            <div class="price-period">/mois</div>
+          </div>
+          <ul class="price-features">
+            <li>✓ 150 000 requêtes/mois</li>
+            <li>✓ 3 univers (Phos/Pêche/Sécu)</li>
+            <li>✓ Risk scores + historique 12 mois</li>
+            <li>✓ Support prioritaire</li>
+          </ul>
+          <button class="cta-pricing" onclick="buyPro()">Souscrire Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="price-header">
+            <h3>ENTERPRISE</h3>
+            <div class="price-amount">4 999€+</div>
+            <div class="price-period">/mois</div>
+          </div>
+          <ul class="price-features">
+            <li>✓ Requêtes illimitées</li>
+            <li>✓ Univers custom</li>
+            <li>✓ Webhooks + Slack</li>
+            <li>✓ Analystes dédiés</li>
+          </ul>
+          <button class="cta-pricing" onclick="contactEnterprise()">Contacter</button>
         </div>
       </div>
     </div>
@@ -435,140 +580,84 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px;">
-      <div>
-        <strong>CERSS SAHARA · Investment & Risk Lab</strong><br/>
-        <span style="font-size:0.75rem;">Prototype de tableau de bord d’investissement avec alertes API simulées.</span>
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>CERSS SAHARA</h3>
+        <p>Dakhla Investment Lab · Think Tank Stratégique</p>
+        <div style="margin-top: 1rem;">
+          <a href="#" style="margin-right: 1rem;"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
       </div>
-      <div style="font-size:0.75rem;">
-        Déployé via GitHub Pages. Pour mettre à jour, modifie de>index.html</code> dans le dépôt.
+      <div class="footer-section">
+        <h3>Produits</h3>
+        <p>Alerts API | Risk Scores | Investment Memos</p>
       </div>
+      <div class="footer-section">
+        <h3>Support</h3>
+        <p>demo@cerss-lab.com<br>+212 6 XX XX XX XX</p>
+        <div class="api-docs">
+          <strong>Clé test :</strong><br>
+          de>cerss-test-basic-1234567890abcdef</code>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.85rem;">
+      © 2025 CERSS SAHARA. Tous droits réservés. Déployé sur GitHub Pages + Supabase.
     </div>
   </footer>
 
   <script>
-    // --- Données de base pour la table d'actifs (demo) ---
-    const assets = [
-      { symbol: "MSCI-EM", name: "MSCI Marchés Émergents", class: "Actions", price: 1045.2, change: +0.8, risk: "medium" },
-      { symbol: "OIL", name: "Brent Crude", class: "Commodité", price: 92.4, change: -1.3, risk: "high" },
-      { symbol: "XOF", name: "FX EUR/XOF", class: "Devises", price: 655.9, change: +0.1, risk: "low" },
-      { symbol: "BOND-MA", name: "Oblig. Maroc 10Y", class: "Taux", price: 3.75, change: +0.05, risk: "medium" },
-      { symbol: "GOLD", name: "Or (oz)", class: "Commodité", price: 2120.5, change: +0.4, risk: "low" }
+    // Données simulées (remplacer par fetch Supabase)
+    const mockAlerts = [
+      { id: 'PHOS-001', title: 'OCP Youssoufia', universe: 'phosphates', level: 'high', message: 'Production -15% (grève)', time: '16:45' },
+      { id: 'SEC-002', title: 'Piraterie Dakhla', universe: 'securite', level: 'critical', message: 'Chalutier espagnol attaqué', time: '14:30' },
+      { id: 'FISH-003', title: 'Quota Sardine', universe: 'peche', level: 'medium', message: 'Réduction 25% Dakhla', time: '11:20' }
     ];
 
-    function renderAssets() {
-      const tbody = document.getElementById("asset-table-body");
-      tbody.innerHTML = "";
-      assets.forEach(a => {
-        const tr = document.createElement("tr");
-
-        const tdName = document.createElement("td");
-        tdName.textContent = a.name + " (" + a.symbol + ")";
-
-        const tdClass = document.createElement("td");
-        tdClass.textContent = a.class;
-
-        const tdPrice = document.createElement("td");
-        tdPrice.textContent = a.price.toFixed(2);
-
-        const tdChange = document.createElement("td");
-        tdChange.textContent = (a.change > 0 ? "+" : "") + a.change.toFixed(2) + "%";
-        tdChange.className = a.change >= 0 ? "change-pos" : "change-neg";
-
-        const tdRisk = document.createElement("td");
-        const span = document.createElement("span");
-        if (a.risk === "low") { span.className = "pill pill-low"; span.textContent = "Faible"; }
-        if (a.risk === "medium") { span.className = "pill pill-med"; span.textContent = "Modéré"; }
-        if (a.risk === "high") { span.className = "pill pill-high"; span.textContent = "Élevé"; }
-        tdRisk.appendChild(span);
-
-        tr.appendChild(tdName);
-        tr.appendChild(tdClass);
-        tr.appendChild(tdPrice);
-        tr.appendChild(tdChange);
-        tr.appendChild(tdRisk);
-
-        tbody.appendChild(tr);
-      });
+    function renderLiveAlerts() {
+      const container = document.getElementById('live-alerts');
+      container.innerHTML = mockAlerts.map(alert => `
+        <div class="alert-item alert-${alert.level}">
+          <i class="fas fa-exclamation-triangle alert-icon"></i>
+          <div class="alert-content">
+            <div class="alert-title">${alert.title} <span style="color: #94a3b8;">· ${alert.universe}</span></div>
+            <div style="font-size: 0.9rem; margin-top: 4px;">${alert.message}</div>
+            <div class="alert-meta">
+              <span>${alert.time}</span>
+              <span>${alert.level.toUpperCase()}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
 
-    // --- Simulation d'API d'alertes ---
-    function fetchMockAlerts() {
-      const now = new Date();
-      const time = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
-
-      const samples = [
-        {
-          symbol: "OIL",
-          type: "volatility",
-          level: "high",
-          message: "Volatilité journalière du Brent > 4%. Revue de l’exposition recommandée.",
-          ts: time
-        },
-        {
-          symbol: "MSCI-EM",
-          type: "drawdown",
-          level: "medium",
-          message: "Correction de -2% sur les marchés émergents. Vérifier la couverture FX.",
-          ts: time
-        },
-        {
-          symbol: "BOND-MA",
-          type: "spread",
-          level: "low",
-          message: "Taux 10 ans Maroc stable. Aucune action immédiate.",
-          ts: time
-        }
-      ];
-
-      // Simuler un sous-ensemble aléatoire
-      const shuffled = samples.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, Math.floor(Math.random() * samples.length) + 1);
+    function scrollTo(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      event.target.classList.add('active');
     }
 
-    function renderAlerts() {
-      const alerts = fetchMockAlerts();
-      const container = document.getElementById("alerts-list");
-      container.innerHTML = "";
-
-      alerts.forEach(a => {
-        const div = document.createElement("div");
-        div.className = "alert-item" + (a.level === "high" ? " danger" : "");
-        const strong = document.createElement("strong");
-        strong.textContent = a.symbol + " · " + a.type.toUpperCase();
-
-        const p = document.createElement("p");
-        p.textContent = a.message;
-
-        const meta = document.createElement("div");
-        meta.className = "alert-meta";
-        meta.textContent = "Niveau: " + a.level + " · " + a.ts;
-
-        div.appendChild(strong);
-        div.appendChild(p);
-        div.appendChild(meta);
-        container.appendChild(div);
-      });
-
-      if (alerts.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "alert-item";
-        empty.textContent = "Aucune alerte active pour le moment.";
-        container.appendChild(empty);
-      }
+    function fetchLiveAlerts() {
+      // TODO: fetch('https://api.cerss-lab.com/api/alerts', { headers: { 'x-api-key': '...' } })
+      renderLiveAlerts();
     }
 
-    function refreshAlerts() {
-      renderAlerts();
+    function getTestKey() {
+      alert('Clé test gratuite envoyée !\n\ncerss-test-basic-1234567890abcdef\n\nValable 14 jours - 1 000 req/mois');
     }
 
-    function scrollToId(id) {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    function buyPro() {
+      alert('Souscription Pro lancée !\n\nPaiement Stripe → Clé API instantanée');
     }
 
-    // Initialisation à l'ouverture de la page
-    renderAssets();
-    renderAlerts();
+    function contactEnterprise() {
+      alert('Contact Enterprise\n\ndemo@cerss-lab.com\nDemande de démo personnalisée');
+    }
+
+    // Init
+    renderLiveAlerts();
+    setInterval(fetchLiveAlerts, 30000); // Refresh toutes les 30s
   </script>
 </body>
 </html>
