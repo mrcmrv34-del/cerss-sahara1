@@ -1,519 +1,574 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CERSS SAHARA | Centre d'Analyse Stratégique</title>
-    
-    <!-- Polices de Haut Niveau -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- PALETTE "EXECUTIVE" (CLAIRE & PRO) --- */
-        :root {
-            --primary: #255d8b;      /* Bleu Diplomatique */
-            --primary-dark: #1a4568;
-            --secondary: #d4872f;    /* Or/Ocre (Terre) */
-            --accent-green: #27ae60; /* Pour les indicateurs positifs */
-            --text-dark: #2c3e50;
-            --text-light: #5a6b7c;
-            --bg-body: #f8f9fa;
-            --white: #ffffff;
-            --border: #e9ecef;
-            --shadow-card: 0 10px 30px rgba(0,0,0,0.06);
-            --radius: 8px;
-        }
+  <meta charset="UTF-8" />
+  <title>CERSS SAHARA | Investment & Risk Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1d3557;
+      --secondary: #e9c46a;
+      --accent: #2a9d8f;
+      --danger: #e63946;
+      --bg: #f5f6fa;
+      --text: #2f3640;
+      --muted: #7f8c8d;
+      --card-bg: #ffffff;
+      --border: #e0e0e0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+      --radius: 10px;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { font-family: 'Lato', sans-serif; background: var(--bg-body); color: var(--text-dark); line-height: 1.6; }
-        body[dir="rtl"] { font-family: 'Tajawal', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 1rem; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+    }
 
-        /* --- MODAL BRIEFING (TABLEAU DE BORD) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(37, 93, 139, 0.5); backdrop-filter: blur(8px);
-            z-index: 9999; display: flex; justify-content: center; align-items: center;
-            animation: fadeIn 0.6s ease-out;
-        }
-        .modal-card {
-            background: var(--white); width: 90%; max-width: 900px; border-radius: 12px; padding: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2); position: relative; animation: slideUp 0.6s;
-            border-top: 6px solid var(--secondary);
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: #aaa; cursor: pointer; }
-        .close-modal:hover { color: var(--secondary); }
+    a { color: inherit; text-decoration: none; }
 
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 30px; }
-        .kpi-item {
-            background: #f8faff; padding: 20px; border-radius: 12px; text-align: center;
-            border: 1px solid #e1e8f0; transition: 0.3s; cursor: pointer;
-        }
-        .kpi-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        /* Graphiques CSS (Pie Charts) */
-        .css-pie {
-            width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 15px;
-            background: conic-gradient(var(--c) calc(var(--p)*1%), #e0e0e0 0); position: relative;
-        }
-        .css-pie::after {
-            content: attr(data-val); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: white; width: 65px; height: 65px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-dark);
-        }
-        .kpi-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-light); letter-spacing: 0.5px; }
+    /* HEADER */
+    header {
+      background: var(--card-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo span {
+      color: var(--primary);
+    }
+    .logo small {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .nav-links a {
+      cursor: pointer;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
 
-        /* --- HEADER --- */
-        header { background: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        .logo i { color: var(--secondary); }
-        .menu { display: flex; gap: 25px; }
-        .menu a { font-size: 0.9rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; }
-        .menu a:hover { color: var(--primary); }
-        .lang-selector span { cursor: pointer; padding: 0 5px; font-weight: bold; color: #ccc; }
-        .lang-selector span.active { color: var(--secondary); }
+    /* HERO */
+    .hero {
+      padding: 70px 0 40px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: #e0f4f1;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #16324a;
+    }
+    .hero-highlight {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      font-size: 0.9rem;
+    }
+    .hero-highlight h3 {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+    .hero-highlight span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
 
-        /* --- HERO --- */
-        .hero {
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; background-position: center; padding: 100px 0; text-align: center; border-bottom: 1px solid var(--border);
-        }
-        .btn { background: var(--primary); color: white; padding: 12px 30px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; }
-        .btn:hover { background: var(--primary-dark); }
+    /* SECTION TITLES */
+    .section {
+      padding: 50px 0;
+    }
+    .section-header {
+      margin-bottom: 30px;
+    }
+    .section-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-        /* --- SECTIONS COMMUNES --- */
-        .section { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-size: 2.2rem; }
-        .section-header p { max-width: 700px; margin: 10px auto 0; color: var(--text-light); }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    /* GRID */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
 
-        /* Cartes Standard */
-        .card { background: var(--white); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--primary); }
-        .card-icon { font-size: 2rem; color: var(--primary); margin-bottom: 20px; }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
 
-        /* --- DATA CENTER (Style Pew Research) --- */
-        .data-section { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .poll-container { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: center; }
-        
-        .chart-frame { border: 1px solid #ddd; padding: 30px; border-radius: 8px; background: #fff; box-shadow: var(--shadow-card); }
-        .chart-frame h3 { font-family: 'Lato', sans-serif; font-size: 1.1rem; margin-bottom: 25px; }
-        
-        .bar-row { margin-bottom: 18px; display: flex; align-items: center; gap: 15px; }
-        .bar-label { width: 180px; font-size: 0.9rem; font-weight: bold; text-align: right; color: #444; }
-        .bar-track { flex-grow: 1; background: #f1f1f1; height: 24px; border-radius: 4px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--primary); display: flex; align-items: center; padding-left: 10px; color: white; font-size: 0.75rem; width: 0; animation: grow 1.5s forwards; }
-        
-        .stat-box { background: #f8f9fa; padding: 30px; border-radius: 8px; text-align: center; margin-bottom: 20px; border: 1px solid var(--border); }
-        .stat-num { font-size: 3rem; font-weight: 800; color: var(--secondary); line-height: 1; }
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 5px;
+    }
+    .card small {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
 
-        /* --- PUBLICATIONS --- */
-        .filter-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
-        .filter-btn { background: white; border: 1px solid var(--border); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; }
-        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-        
-        .pub-card { background: white; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: 0.3s; }
-        .pub-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
-        .pub-img { height: 180px; background-size: cover; background-position: center; }
-        .pub-content { padding: 20px; }
-        .pub-tag { background: var(--secondary); color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
-        .pub-link { color: var(--primary); font-weight: bold; font-size: 0.9rem; display: block; margin-top: 15px; }
+    /* INVESTMENT WATCH */
+    .investment-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1.2fr;
+      gap: 25px;
+      align-items: flex-start;
+    }
 
-        /* --- WEBINARS --- */
-        .webinar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-        .web-card { display: flex; background: white; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-        .web-date { background: var(--primary); color: white; padding: 20px; min-width: 80px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
-        .web-day { font-size: 1.8rem; font-weight: 700; }
-        .web-info { padding: 20px; }
-        .web-speakers { font-size: 0.85rem; color: var(--text-light); font-style: italic; margin: 5px 0 10px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th, td {
+      padding: 8px 6px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        /* --- FOOTER --- */
-        footer { background: #1a252f; color: white; padding: 60px 0 20px; }
-        .footer-links a { color: #bdc3c7; display: block; margin-bottom: 8px; } .footer-links a:hover { color: white; }
+    .pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+    }
+    .pill-low { background: #e8f5e9; color: #2e7d32; }
+    .pill-med { background: #fff3e0; color: #ef6c00; }
+    .pill-high { background: #ffebee; color: #c62828; }
 
-        @keyframes grow { from{width:0} to{width:var(--w)} }
-        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-        @keyframes slideUp { from{transform:translateY(30px)} to{transform:translateY(0)} }
-        
-        @media (max-width: 900px) { .poll-container { grid-template-columns: 1fr; } .bar-label { width: 100%; text-align: left; margin-bottom: 5px; } .bar-row { flex-direction: column; align-items: flex-start; gap: 0; } .bar-track { width: 100%; } }
-    </style>
+    .change-pos { color: #2e7d32; }
+    .change-neg { color: #c62828; }
+
+    /* ALERTES API */
+    .alerts-list {
+      max-height: 260px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+    .alert-item {
+      border-left: 3px solid var(--accent);
+      background: #f0f9f7;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+    }
+    .alert-item.danger {
+      border-color: var(--danger);
+      background: #ffeff0;
+    }
+    .alert-item strong {
+      display: block;
+    }
+    .alert-meta {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .alerts-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .btn-secondary {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: #f0f0f0;
+    }
+
+    /* API DOC BOX */
+    .api-doc {
+      font-size: 0.82rem;
+      background: #fdfaf3;
+      border-radius: var(--radius);
+      border: 1px dashed #e0c588;
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 1px 3px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a252f;
+      color: #bdc3c7;
+      padding: 30px 0;
+      margin-top: 40px;
+      font-size: 0.8rem;
+    }
+    footer a { color: #ecf0f1; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .investment-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- MODAL BRIEFING (DASHBOARD) -->
-    <div id="modal" class="modal-overlay">
-        <div class="modal-card">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="text-align: center;" data-key="modal_title">Briefing Stratégique - Décembre 2025</h2>
-            <p style="text-align: center; color: #888;" data-key="modal_sub">Synthèse des Indicateurs Clés | CERSS Observatoire</p>
-            
-            <div class="kpi-grid">
-                <div class="kpi-item" onclick="goTo('autonomy')">
-                    <div class="css-pie" style="--c:#255d8b; --p:85" data-val="85%"></div>
-                    <div class="kpi-label" data-key="kpi1">Soutien Autonomie</div>
-                </div>
-                <div class="kpi-item" onclick="goTo('data-center')">
-                    <div class="css-pie" style="--c:#d4872f; --p:78" data-val="78%"></div>
-                    <div class="kpi-label" data-key="kpi2">Confiance Publique</div>
-                </div>
-                <div class="kpi-item" onclick="goTo('research')">
-                    <div class="css-pie" style="--c:#27ae60; --p:92" data-val="92%"></div>
-                    <div class="kpi-label" data-key="kpi3">Croissance IDE</div>
-                </div>
-                <div class="kpi-item" onclick="goTo('webinars')">
-                    <div class="css-pie" style="--c:#e74c3c; --p:12" data-val="12"></div>
-                    <div class="kpi-label" data-key="kpi4">Webinars à venir</div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="btn" onclick="closeModal()" data-key="btn_enter">ACCÉDER AU SITE COMPLET</button>
-            </div>
-        </div>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span> CERSS SAHARA </span>
+        <small>Investment & Risk Lab</small>
+      </div>
+      <nav class="nav-links">
+        <a onclick="scrollToId('hero')">Accueil</a>
+        <a onclick="scrollToId('investment')">Investment Watch</a>
+        <a onclick="scrollToId('api-alerts')">API Alerts</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-bar">
-            <div class="logo">
-                <i class="fas fa-globe-africa"></i> <span data-key="logo">CERSS SAHARA</span>
-            </div>
-            <nav class="menu">
-                <a onclick="goTo('autonomy')" data-key="nav_auto">Autonomie</a>
-                <a onclick="goTo('data-center')" data-key="nav_data">Data Center</a>
-                <a onclick="goTo('publications')" data-key="nav_pubs">Publications</a>
-                <a onclick="goTo('webinars')" data-key="nav_web">Webinars</a>
-                <a onclick="goTo('contact')" data-key="nav_contact">Contact</a>
-            </nav>
-            <div class="lang-selector">
-                <span class="active" onclick="setLang('fr')">FR</span>
-                <span onclick="setLang('en')">EN</span>
-                <span onclick="setLang('ar')">AR</span>
-            </div>
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">Think Tank · Marchés & Risques</div>
+        <h1>Tableau de Bord d’Investissement & Alertes Stratégiques</h1>
+        <p>
+          Version démo du laboratoire d’analyse CERSS dédié aux flux d’investissement, au suivi de portefeuilles et aux alertes de risque
+          générées via API.
+        </p>
+        <button class="btn-primary" onclick="scrollToId('investment')">Voir le flux d’investissement</button>
+      </div>
+      <div>
+        <div class="hero-highlight">
+          <h3>Mandat du Lab</h3>
+          <span>Use case : Think tank d’investissement</span>
+          <p style="margin-top:8px;">
+            • Surveiller des paniers d’actifs (indices, matières premières, FX).<br/>
+            • Déclencher des alertes en cas de volatilité ou de franchissement de seuils.<br/>
+            • Fournir aux décideurs des signaux synthétiques (API ou interface web).
+          </p>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <!-- HERO -->
-        <section class="hero">
-            <div class="container">
-                <h1 data-key="hero_title">Intelligence Stratégique pour un Avenir Partagé</h1>
-                <p data-key="hero_desc">Le think tank de référence pour l'analyse des dynamiques géopolitiques, économiques et sociales du Sahara atlantique et du Sahel.</p>
-                <button class="btn" onclick="goTo('publications')" data-key="hero_btn">Consulter nos Derniers Rapports</button>
+  <!-- SECTION INVESTMENT WATCH -->
+  <section id="investment" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Investment Watch · Exposition & Risques</h2>
+        <p>Vue synthétique sur quelques actifs suivis par le laboratoire (données de démonstration).</p>
+      </div>
+
+      <div class="investment-layout">
+        <!-- TABLEAU D'ACTIFS -->
+        <div class="card">
+          <h3 style="margin-bottom:10px;">Portefeuille de Référence</h3>
+          <small>Scénario fictif illustrant la logique d’analyse.</small>
+          <table style="margin-top:10px;">
+            <thead>
+              <tr>
+                <th>Actif</th>
+                <th>Classe</th>
+                <th>Prix</th>
+                <th>Journée</th>
+                <th>Risque</th>
+              </tr>
+            </thead>
+            <tbody id="asset-table-body">
+              <!-- Rempli par JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ALERTES API -->
+        <div id="api-alerts" class="card">
+          <div class="alerts-header">
+            <div>
+              <h3>Alertes API de Marché</h3>
+              <small>Simulation de réponses d’API (price / volatility alerts).</small>
             </div>
-        </section>
+            <button class="btn-secondary" onclick="refreshAlerts()">Rafraîchir les alertes</button>
+          </div>
 
-        <!-- PÔLE AUTONOMIE -->
-        <section id="autonomy" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-key="auto_title">Pôle d'Excellence : Projet d'Autonomie</h2>
-                    <p data-key="auto_sub">Analyse multidimensionnelle de l'Initiative marocaine : conformité juridique, gouvernance et impact socio-économique.</p>
-                </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-gavel"></i></div>
-                        <h3 data-key="c1_title">Droit & Constitutionnalité</h3>
-                        <p data-key="c1_desc">Analyse de la conformité avec le droit international et les standards onusiens. Étude comparée des modèles d'autonomie.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-landmark"></i></div>
-                        <h3 data-key="c2_title">Gouvernance Locale</h3>
-                        <p data-key="c2_desc">Modélisation du transfert de compétences : fiscalité régionale, aménagement du territoire et administration.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-industry"></i></div>
-                        <h3 data-key="c3_title">Ressources & Dév.</h3>
-                        <p data-key="c3_desc">Mécanismes de redistribution des richesses (phosphates, pêche, énergies vertes) au profit direct des populations locales.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="alerts-list" id="alerts-list">
+            <!-- Rempli par JS -->
+          </div>
 
-        <!-- DATA CENTER (PEW STYLE) -->
-        <section id="data-center" class="section data-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-key="data_title">CERSS Data Center</h2>
-                    <p data-key="data_sub">Observatoire statistique des politiques publiques et de la perception citoyenne.</p>
-                </div>
-                <div class="poll-container">
-                    <div class="chart-frame">
-                        <h3 data-key="chart_q">Sondage Nov. 2025 : "Quelle priorité pour le développement régional ?"</h3>
-                        <div class="bar-row">
-                            <div class="bar-label" data-key="lbl_1">Emploi des Jeunes</div>
-                            <div class="bar-track"><div class="bar-fill" style="--w: 45%;">45%</div></div>
-                        </div>
-                        <div class="bar-row">
-                            <div class="bar-label" data-key="lbl_2">Santé & Social</div>
-                            <div class="bar-track"><div class="bar-fill" style="--w: 25%; background: #d4872f;">25%</div></div>
-                        </div>
-                        <div class="bar-row">
-                            <div class="bar-label" data-key="lbl_3">Infrastructures</div>
-                            <div class="bar-track"><div class="bar-fill" style="--w: 15%; background: #95a5a6;">15%</div></div>
-                        </div>
-                        <div class="bar-row">
-                            <div class="bar-label" data-key="lbl_4">Éducation</div>
-                            <div class="bar-track"><div class="bar-fill" style="--w: 10%; background: #34495e;">10%</div></div>
-                        </div>
-                        <p style="font-size: 0.8rem; color: #999; margin-top: 20px;">Source: CERSS Data. N=2500.</p>
-                    </div>
-                    <div>
-                        <div class="stat-box">
-                            <div class="stat-num">82%</div>
-                            <p data-key="stat1">Des citoyens soutiennent les projets d'énergies renouvelables.</p>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num">76%</div>
-                            <p data-key="stat2">Perçoivent une amélioration de la sécurité urbaine.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="api-doc">
+            <strong>Architecture API (exemple) :</strong><br/>
+            • Endpoint : de>GET /api/alerts?universe=ssa,fx,commodities</code><br/>
+            • Réponse : de>[{ "symbol": "OIL", "type": "volatility", "level": "high", "message": "Brent &gt; 90 USD" }]</code><br/>
+            Dans cette démo, les données sont générées côté navigateur, mais tu peux remplacer la fonction
+            <e>fetchMockAlerts()</code> par un de>fetch('https://vraie-api.com/alerts')</code>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- PUBLICATIONS & RAPPORTS -->
-        <section id="publications" class="section" style="background: #f1f4f8;">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-key="pub_title">Centre de Publications</h2>
-                    <p data-key="pub_sub">Rapports stratégiques, Mémorandums et Policy Briefs.</p>
-                </div>
-                
-                <div class="filter-bar">
-                    <button class="filter-btn active" onclick="filter('all')" data-key="f_all">Tout</button>
-                    <button class="filter-btn" onclick="filter('report')" data-key="f_rep">Rapports</button>
-                    <button class="filter-btn" onclick="filter('memo')" data-key="f_mem">Mémorandums</button>
-                </div>
+  <!-- SECTION PRODUITS DU THINK TANK -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Produits du Think Tank d’Investissement</h2>
+        <p>Exemples de livrables que ce type de plateforme peut produire pour des décideurs publics ou privés.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Investment Memos</h3>
+          <small>Notes rapides pour décideurs</small>
+          <p style="margin-top:8px; font-size:0.9rem;">
+            Synthèse de 3 à 5 pages sur une opportunité d’investissement (corridor logistique, zone franche, PPP), avec scores de risque,
+            scénarios et recommandations.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Risk Dashboards</h3>
+          <small>Monitoring en quasi temps réel</small>
+          <p style="margin-top:8px; font-size:0.9rem;">
+            Tableaux de bord alimentés par API (marchés, CDS, matières premières) avec seuils d’alerte, indices de stress et suivi
+            mensuel des signaux clés.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Investor Briefings</h3>
+          <small>Webinars & Notes confidentielles</small>
+          <p style="margin-top:8px; font-size:0.9rem;">
+            Sessions ciblées avec investisseurs institutionnels, complétées par des packs PDF (slides, graphiques et annexes de données)
+            publiés via la plateforme.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="grid-3">
-                    <div class="pub-card" data-cat="report">
-                        <div class="pub-img" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600')"></div>
-                        <div class="pub-content">
-                            <span class="pub-tag">Rapport Annuel</span>
-                            <h3 data-key="p1_t">Bilan Géopolitique 2025</h3>
-                            <p data-key="p1_d">Analyse complète des dynamiques sécuritaires Sahara-Sahel.</p>
-                            <a class="pub-link"><i class="fas fa-download"></i> PDF (5MB)</a>
-                        </div>
-                    </div>
-                    <div class="pub-card" data-cat="memo">
-                        <div class="pub-img" style="background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600')"></div>
-                        <div class="pub-content">
-                            <span class="pub-tag" style="background: #27ae60;">Mémorandum</span>
-                            <h3 data-key="p2_t">Argumentaire Juridique</h3>
-                            <p data-key="p2_d">Conformité de l'Initiative d'Autonomie avec le Droit International.</p>
-                            <a class="pub-link"><i class="fas fa-download"></i> PDF (2MB)</a>
-                        </div>
-                    </div>
-                    <div class="pub-card" data-cat="report">
-                        <div class="pub-img" style="background-image: url('https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=600')"></div>
-                        <div class="pub-content">
-                            <span class="pub-tag">Rapport Spécial</span>
-                            <h3 data-key="p3_t">Hub Dakhla Atlantique</h3>
-                            <p data-key="p3_d">Impact économique du nouveau port sur l'Afrique de l'Ouest.</p>
-                            <a class="pub-link"><i class="fas fa-download"></i> PDF (8MB)</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px;">
+      <div>
+        <strong>CERSS SAHARA · Investment & Risk Lab</strong><br/>
+        <span style="font-size:0.75rem;">Prototype de tableau de bord d’investissement avec alertes API simulées.</span>
+      </div>
+      <div style="font-size:0.75rem;">
+        Déployé via GitHub Pages. Pour mettre à jour, modifie de>index.html</code> dans le dépôt.
+      </div>
+    </div>
+  </footer>
 
-        <!-- WEBINARS -->
-        <section id="webinars" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-key="web_title">Webinars & Événements</h2>
-                </div>
-                <div class="webinar-grid">
-                    <div class="web-card">
-                        <div class="web-date">
-                            <div class="web-day">15</div>
-                            <div data-key="m_jan">JAN</div>
-                        </div>
-                        <div class="web-info">
-                            <h3 data-key="w1_t">L'Avenir de la Sécurité au Sahel</h3>
-                            <p class="web-speakers" data-key="w1_s">Dr. A. Bennani & Gen. Dubois</p>
-                            <a class="btn" style="padding: 5px 15px; font-size: 0.8rem;" data-key="btn_reg">S'inscrire</a>
-                        </div>
-                    </div>
-                    <div class="web-card">
-                        <div class="web-date" style="background: var(--secondary);">
-                            <div class="web-day">05</div>
-                            <div data-key="m_dec">DÉC</div>
-                        </div>
-                        <div class="web-info">
-                            <h3 data-key="w2_t">Conférence Annuelle (Replay)</h3>
-                            <p class="web-speakers" data-key="w2_s">Keynote: M. Nasser Bourita</p>
-                            <a class="btn" style="background: #7f8c8d; padding: 5px 15px; font-size: 0.8rem;" data-key="btn_watch">Voir Replay</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <script>
+    // --- Données de base pour la table d'actifs (demo) ---
+    const assets = [
+      { symbol: "MSCI-EM", name: "MSCI Marchés Émergents", class: "Actions", price: 1045.2, change: +0.8, risk: "medium" },
+      { symbol: "OIL", name: "Brent Crude", class: "Commodité", price: 92.4, change: -1.3, risk: "high" },
+      { symbol: "XOF", name: "FX EUR/XOF", class: "Devises", price: 655.9, change: +0.1, risk: "low" },
+      { symbol: "BOND-MA", name: "Oblig. Maroc 10Y", class: "Taux", price: 3.75, change: +0.05, risk: "medium" },
+      { symbol: "GOLD", name: "Or (oz)", class: "Commodité", price: 2120.5, change: +0.4, risk: "low" }
+    ];
 
-        <!-- RECHERCHE & SAHEL -->
-        <section id="research" class="section" style="background: #f8f9fa;">
-            <div class="container">
-                <div class="section-header">
-                    <h2 data-key="res_title">Autres Axes Stratégiques</h2>
-                </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3 data-key="r1_t">Sécurité Sahel</h3>
-                        <p data-key="r1_d">Lutte contre le terrorisme et coopération transfrontalière.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                        <h3 data-key="r2_t">Investissement</h3>
-                        <p data-key="r2_d">Attractivité des IDE et climat des affaires.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon"><i class="fas fa-users"></i></div>
-                        <h3 data-key="r3_t">Droits Humains</h3>
-                        <p data-key="r3_d">Indicateurs de développement et libertés publiques.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    function renderAssets() {
+      const tbody = document.getElementById("asset-table-body");
+      tbody.innerHTML = "";
+      assets.forEach(a => {
+        const tr = document.createElement("tr");
 
-        <!-- FOOTER -->
-        <footer id="contact">
-            <div class="container">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
-                    <div>
-                        <h3>CERSS SAHARA</h3>
-                        <p style="color: #bdc3c7;">Intelligence Stratégique pour le Sud.</p>
-                    </div>
-                    <div class="footer-links">
-                        <h4 style="color: var(--secondary); margin-bottom: 15px;">Liens</h4>
-                        <a onclick="goTo('publications')">Publications</a>
-                        <a onclick="goTo('data-center')">Data Center</a>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--secondary); margin-bottom: 15px;">Contact</h4>
-                        <p style="color: #bdc3c7;">Rabat, Maroc<br>contact@cerss-sahara.org</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 40px; color: #7f8c8d; font-size: 0.8rem;">
-                    &copy; 2025 CERSS SAHARA. Tous droits réservés.
-                </div>
-            </div>
-        </footer>
+        const tdName = document.createElement("td");
+        tdName.textContent = a.name + " (" + a.symbol + ")";
 
-    </main>
+        const tdClass = document.createElement("td");
+        tdClass.textContent = a.class;
 
-    <script>
-        // --- NAVIGATION & UI ---
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
-        
-        function goTo(id) {
-            closeModal();
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        const tdPrice = document.createElement("td");
+        tdPrice.textContent = a.price.toFixed(2);
+
+        const tdChange = document.createElement("td");
+        tdChange.textContent = (a.change > 0 ? "+" : "") + a.change.toFixed(2) + "%";
+        tdChange.className = a.change >= 0 ? "change-pos" : "change-neg";
+
+        const tdRisk = document.createElement("td");
+        const span = document.createElement("span");
+        if (a.risk === "low") { span.className = "pill pill-low"; span.textContent = "Faible"; }
+        if (a.risk === "medium") { span.className = "pill pill-med"; span.textContent = "Modéré"; }
+        if (a.risk === "high") { span.className = "pill pill-high"; span.textContent = "Élevé"; }
+        tdRisk.appendChild(span);
+
+        tr.appendChild(tdName);
+        tr.appendChild(tdClass);
+        tr.appendChild(tdPrice);
+        tr.appendChild(tdChange);
+        tr.appendChild(tdRisk);
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // --- Simulation d'API d'alertes ---
+    function fetchMockAlerts() {
+      const now = new Date();
+      const time = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+
+      const samples = [
+        {
+          symbol: "OIL",
+          type: "volatility",
+          level: "high",
+          message: "Volatilité journalière du Brent > 4%. Revue de l’exposition recommandée.",
+          ts: time
+        },
+        {
+          symbol: "MSCI-EM",
+          type: "drawdown",
+          level: "medium",
+          message: "Correction de -2% sur les marchés émergents. Vérifier la couverture FX.",
+          ts: time
+        },
+        {
+          symbol: "BOND-MA",
+          type: "spread",
+          level: "low",
+          message: "Taux 10 ans Maroc stable. Aucune action immédiate.",
+          ts: time
         }
+      ];
 
-        function filter(cat) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.pub-card').forEach(c => {
-                c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
-            });
-        }
+      // Simuler un sous-ensemble aléatoire
+      const shuffled = samples.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, Math.floor(Math.random() * samples.length) + 1);
+    }
 
-        // --- TRADUCTION COMPLÈTE ---
-        const t = {
-            fr: {
-                logo: "CERSS SAHARA", nav_auto: "Autonomie", nav_data: "Data Center", nav_pubs: "Publications", nav_web: "Webinars", nav_contact: "Contact",
-                hero_title: "Intelligence Stratégique pour un Avenir Partagé", hero_desc: "Le think tank de référence pour l'analyse des dynamiques géopolitiques, économiques et sociales du Sahara atlantique et du Sahel.", hero_btn: "Consulter nos Derniers Rapports",
-                modal_title: "Briefing Stratégique - Décembre 2025", modal_sub: "Synthèse des Indicateurs Clés | CERSS Observatoire", btn_enter: "ACCÉDER AU SITE COMPLET",
-                kpi1: "Soutien Autonomie", kpi2: "Confiance Publique", kpi3: "Croissance IDE", kpi4: "Webinars à venir",
-                auto_title: "Pôle d'Excellence : Projet d'Autonomie", auto_sub: "Analyse multidimensionnelle de l'Initiative marocaine : conformité juridique, gouvernance et impact socio-économique.",
-                c1_title: "Droit & Constitutionnalité", c1_desc: "Analyse de la conformité avec le droit international et les standards onusiens.",
-                c2_title: "Gouvernance Locale", c2_desc: "Modélisation du transfert de compétences : fiscalité régionale et administration.",
-                c3_title: "Ressources & Dév.", c3_desc: "Mécanismes de redistribution des richesses au profit direct des populations locales.",
-                data_title: "CERSS Data Center", data_sub: "Observatoire statistique des politiques publiques et de la perception citoyenne.",
-                chart_q: "Sondage Nov. 2025 : 'Quelle priorité pour le développement ?'", lbl_1: "Emploi Jeunes", lbl_2: "Santé", lbl_3: "Infrastructures", lbl_4: "Éducation",
-                stat1: "Des citoyens soutiennent les projets d'énergies renouvelables.", stat2: "Perçoivent une amélioration de la sécurité urbaine.",
-                pub_title: "Centre de Publications", pub_sub: "Rapports stratégiques, Mémorandums et Policy Briefs.",
-                f_all: "Tout", f_rep: "Rapports", f_mem: "Mémorandums",
-                p1_t: "Bilan Géopolitique 2025", p1_d: "Analyse complète des dynamiques sécuritaires Sahara-Sahel.",
-                p2_t: "Argumentaire Juridique", p2_d: "Conformité de l'Initiative d'Autonomie avec le Droit International.",
-                p3_t: "Hub Dakhla Atlantique", p3_d: "Impact économique du nouveau port sur l'Afrique de l'Ouest.",
-                web_title: "Webinars & Événements", m_jan: "JAN", m_dec: "DÉC",
-                w1_t: "L'Avenir de la Sécurité au Sahel", w1_s: "Dr. A. Bennani & Gen. Dubois", btn_reg: "S'inscrire",
-                w2_t: "Conférence Annuelle (Replay)", w2_s: "Keynote: M. Nasser Bourita", btn_watch: "Voir Replay",
-                res_title: "Autres Axes Stratégiques",
-                r1_t: "Sécurité Sahel", r1_d: "Lutte contre le terrorisme et coopération transfrontalière.",
-                r2_t: "Investissement", r2_d: "Attractivité des IDE et climat des affaires.",
-                r3_t: "Droits Humains", r3_d: "Indicateurs de développement et libertés publiques."
-            },
-            en: {
-                logo: "CERSS SAHARA", nav_auto: "Autonomy", nav_data: "Data Center", nav_pubs: "Publications", nav_web: "Webinars", nav_contact: "Contact",
-                hero_title: "Strategic Intelligence for a Shared Future", hero_desc: "The leading think tank for geopolitical, economic, and social analysis of the Atlantic Sahara and Sahel.", hero_btn: "View Latest Reports",
-                modal_title: "Strategic Briefing - December 2025", modal_sub: "Key Indicators Synthesis | CERSS Observatory", btn_enter: "ENTER FULL SITE",
-                kpi1: "Autonomy Support", kpi2: "Public Trust", kpi3: "FDI Growth", kpi4: "Upcoming Webinars",
-                auto_title: "Center of Excellence: Autonomy Project", auto_sub: "Multidimensional analysis of the Moroccan Initiative: legal compliance, governance, and economic impact.",
-                c1_title: "Law & Constitutionality", c1_desc: "Analysis of compliance with international law and UN standards.",
-                c2_title: "Local Governance", c2_desc: "Modeling competence transfer: regional taxation and administration.",
-                c3_title: "Resources & Dev.", c3_desc: "Wealth redistribution mechanisms for direct local population benefit.",
-                data_title: "CERSS Data Center", data_sub: "Statistical observatory of public policies and citizen perception.",
-                chart_q: "Nov. 2025 Poll: 'What is the development priority?'", lbl_1: "Youth Jobs", lbl_2: "Health", lbl_3: "Infrastructure", lbl_4: "Education",
-                stat1: "Of citizens support renewable energy projects.", stat2: "Perceive an improvement in urban security.",
-                pub_title: "Publications Center", pub_sub: "Strategic Reports, Memorandums, and Policy Briefs.",
-                f_all: "All", f_rep: "Reports", f_mem: "Memorandums",
-                p1_t: "Geopolitical Review 2025", p1_d: "Comprehensive analysis of Sahara-Sahel security dynamics.",
-                p2_t: "Legal Argument", p2_d: "Compliance of the Autonomy Initiative with International Law.",
-                p3_t: "Dakhla Atlantic Hub", p3_d: "Economic impact of the new port on West Africa.",
-                web_title: "Webinars & Events", m_jan: "JAN", m_dec: "DEC",
-                w1_t: "Future of Security in Sahel", w1_s: "Dr. A. Bennani & Gen. Dubois", btn_reg: "Register",
-                w2_t: "Annual Conference (Replay)", w2_s: "Keynote: Mr. Nasser Bourita", btn_watch: "Watch Replay",
-                res_title: "Other Strategic Axes",
-                r1_t: "Sahel Security", r1_d: "Counter-terrorism and cross-border cooperation.",
-                r2_t: "Investment", r2_d: "FDI attractiveness and business climate.",
-                r3_t: "Human Rights", r3_d: "Development indicators and civil liberties."
-            },
-            ar: {
-                logo: "  CERSS الصحراء", nav_auto: "الحكم الذاتي", nav_data: "مركز البيانات", nav_pubs: "المنشورات", nav_web: "الندوات", nav_contact: "اتصل بنا",
-                hero_title: "الذكاء الاستراتيجي لمستقبل مشترك", hero_desc: "مركز التفكير المرجعي لتحليل الديناميكيات الجيوسياسية والاقتصادية والاجتماعية في الصحراء والساحل.", hero_btn: "اطلع على أحدث التقارير",
-                modal_title: "موجز استراتيجي - ديسمبر 2025", modal_sub: "ملخص المؤشرات الرئيسية | مرصد سرس", btn_enter: "الدخول للموقع",
-                kpi1: "دعم الحكم الذاتي", kpi2: "الثقة العامة", kpi3: "نمو الاستثمارات", kpi4: "ندوات قادمة",
-                auto_title: "قطب التميز: مشروع الحكم الذاتي", auto_sub: "تحليل متعدد الأبعاد للمبادرة المغربية: المطابقة القانونية، الحكامة والأثر الاقتصادي.",
-                c1_title: "القانون والدستورية", c1_desc: "تحليل المطابقة مع القانون الدولي ومعايير الأمم المتحدة.",
-                c2_title: "الحكامة المحلية", c2_desc: "نمذجة نقل الاختصاصات: الجبايات الجهوية والإدارة.",
-                c3_title: "الموارد والتنمية", c3_desc: "آليات إعادة توزيع الثروات لصالح الساكنة المحلية.",
-                data_title: "مركز سرس للبيانات", data_sub: "المرصد الإحصائي للسياسات العمومية وتصورات المواطنين.",
-                chart_q: "استطلاع 2025: 'ما هي أولوية التنمية؟'", lbl_1: "تشغيل الشباب", lbl_2: "الصحة", lbl_3: "البنية التحتية", lbl_4: "التعليم",
-                stat1: "من المواطنين يدعمون مشاريع الطاقات المتجددة.", stat2: "يلاحظون تحسناً في الأمن الحضري.",
-                pub_title: "مركز المنشورات", pub_sub: "تقارير استراتيجية، مذكرات وملخصات سياسات.",
-                f_all: "الكل", f_rep: "تقارير", f_mem: "مذكرات",
-                p1_t: "التقييم الجيوسياسي 2025", p1_d: "تحليل شامل للديناميكيات الأمنية في الصحراء والساحل.",
-                p2_t: "الحجة القانونية", p2_d: "مطابقة مبادرة الحكم الذاتي مع القانون الدولي.",
-                p3_t: "قطب الداخلة الأطلسي", p3_d: "الأثر الاقتصادي للميناء الجديد على غرب إفريقيا.",
-                web_title: "الندوات والفعاليات", m_jan: "يناير", m_dec: "ديسمبر",
-                w1_t: "مستقبل الأمن في الساحل", w1_s: "د. أ. بناني والجنرال دوبوا", btn_reg: "تسجيل",
-                w2_t: "المؤتمر السنوي (إعادة)", w2_s: "كلمة رئيسية: السيد ناصر بوريطة", btn_watch: "مشاهدة",
-                res_title: "محاور استراتيجية أخرى",
-                r1_t: "أمن الساحل", r1_d: "مكافحة الإرهاب والتعاون عبر الحدود.",
-                r2_t: "الاستثمار", r2_d: "جاذبية الاستثمار الأجنبي ومناخ الأعمال.",
-                r3_t: "حقوق الإنسان", r3_d: "مؤشرات التنمية والحريات العامة."
-            }
-        };
+    function renderAlerts() {
+      const alerts = fetchMockAlerts();
+      const container = document.getElementById("alerts-list");
+      container.innerHTML = "";
 
-        function setLang(lang) {
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const k = el.getAttribute('data-key');
-                if (t[lang][k]) el.textContent = t[lang][k];
-            });
-            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            document.querySelectorAll('.lang-selector span').forEach(s => s.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-    </script>
+      alerts.forEach(a => {
+        const div = document.createElement("div");
+        div.className = "alert-item" + (a.level === "high" ? " danger" : "");
+        const strong = document.createElement("strong");
+        strong.textContent = a.symbol + " · " + a.type.toUpperCase();
+
+        const p = document.createElement("p");
+        p.textContent = a.message;
+
+        const meta = document.createElement("div");
+        meta.className = "alert-meta";
+        meta.textContent = "Niveau: " + a.level + " · " + a.ts;
+
+        div.appendChild(strong);
+        div.appendChild(p);
+        div.appendChild(meta);
+        container.appendChild(div);
+      });
+
+      if (alerts.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "alert-item";
+        empty.textContent = "Aucune alerte active pour le moment.";
+        container.appendChild(empty);
+      }
+    }
+
+    function refreshAlerts() {
+      renderAlerts();
+    }
+
+    function scrollToId(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Initialisation à l'ouverture de la page
+    renderAssets();
+    renderAlerts();
+  </script>
 </body>
 </html>
