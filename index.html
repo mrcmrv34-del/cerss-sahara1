@@ -3,829 +3,604 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CERSS SAHARA | Dakhla Investment & Risk Lab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>CERSS SAHARA | Dakhla Strategic Risk Assessment Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e3a8a;      /* Bleu institutionnel */
-      --secondary: #c9a227;    /* Or discret */
-      --success: #059669;
-      --warning: #d97706;
-      --danger: #dc2626;
-      --bg-primary: #f8fafc;
-      --bg-secondary: #ffffff;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --border: #e2e8f0;
-      --shadow-light: 0 4px 6px -1px rgba(0, 0,0, 0.1);
-      --shadow-heavy: 0 20px 25px -5px rgba(0, 0,0, 0.1);
-      --radius: 12px;
+      --primary-color: #1a365d;
+      --secondary-color: #2d5aa0;
+      --accent-color: #f4a261;
+      --text-dark: #2d3748;
+      --text-light: #718096;
+      --bg-light: #f7fafc;
+      --white: #ffffff;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
       line-height: 1.6;
+      color: var(--text-dark);
+      transition: all 0.3s ease;
     }
 
-    /* HEADER */
+    body.ar {
+      font-family: 'Inter', 'Tahoma', sans-serif;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
     header {
-      background: var(--bg-secondary);
-      box-shadow: var(--shadow-light);
-      position: fixed;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
       top: 0;
-      width: 100%;
       z-index: 1000;
     }
-    .nav {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
+
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 80px;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo i { color: var(--secondary); }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      font-weight: 500;
-    }
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--primary); }
-    .cta-header {
-      background: var(--primary);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: var(--shadow-light);
-    }
-    .cta-header:hover { 
-      background: #1e40af;
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-heavy);
+      padding: 1rem 0;
     }
 
-    /* HERO */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      padding: 8px 16px;
+      border: 2px solid var(--secondary-color);
+      background: transparent;
+      color: var(--secondary-color);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .lang-btn.active {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    /* Hero */
     .hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
       padding: 120px 0 80px;
       text-align: center;
     }
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(233, 196, 106, 0.1);
-      color: var(--secondary);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
+
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 24px;
-      color: var(--text-primary);
-    }
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto 40px;
-      font-weight: 400;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 60px;
-    }
-    .stat-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: var(--shadow-light);
-    }
-    .stat-number {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1;
-    }
-    .stat-label {
-      color: var(--text-secondary);
-      font-weight: 500;
-      margin-top: 8px;
-      font-size: 0.95rem;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 80px 0;
-    }
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .section-header {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 60px;
-    }
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text-primary);
-    }
-    .section-header p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* DASHBOARD */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-    .panel {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-light);
-    }
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .panel-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .refresh-btn {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .refresh-btn:hover {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .alerts-container {
-      max-height: 500px;
-      overflow-y: auto;
-      padding: 0 2rem 2rem;
-    }
-    .alert-item {
-      display: flex;
-      gap: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      border-radius: 10px;
-      border-left: 4px solid transparent;
-      transition: all 0.3s;
-      border: 1px solid transparent;
-    }
-    .alert-high {
-      border-left-color: var(--danger);
-      background: rgba(220, 38, 38, 0.05);
-      border-color: rgba(220, 38, 38, 0.1);
-    }
-    .alert-medium {
-      border-left-color: var(--warning);
-      background: rgba(217, 119, 6, 0.05);
-      border-color: rgba(217, 119, 6, 0.1);
-    }
-    .alert-low {
-      border-left-color: var(--success);
-      background: rgba(5, 150, 105, 0.05);
-      border-color: rgba(5, 150, 105, 0.1);
-    }
-    .alert-icon {
-      font-size: 1.3rem;
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .alert-high .alert-icon { background: rgba(220, 38, 38, 0.1); color: var(--danger); }
-    .alert-medium .alert-icon { background: rgba(217, 119, 6, 0.1); color: var(--warning); }
-    .alert-low .alert-icon { background: rgba(5, 150, 105, 0.1); color: var(--success); }
-    .alert-content { flex: 1; }
-    .alert-title {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 6px;
-      color: var(--text-primary);
-    }
-    .alert-message {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 10px;
-    }
-    .alert-meta {
-      display: flex;
-      gap: 16px;
-      font-size: 0.85rem;
-      color: #94a3b8;
-    }
-
-    /* FEATURES */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 60px;
-    }
-    .feature-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow-light);
-      transition: all 0.3s;
-    }
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-heavy);
-    }
-    .feature-icon {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--primary), #3b82f6);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.6rem;
-      color: white;
-    }
-    .feature-card h3 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-    .feature-card p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* PRICING */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-      margin-top: 60px;
-    }
-    .price-card {
-      background: var(--bg-secondary);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow-light);
-      position: relative;
-      transition: all 0.3s;
-    }
-    .price-card.featured {
-      border-color: var(--secondary);
-      transform: scale(1.02);
-      box-shadow: var(--shadow-heavy);
-    }
-    .price-header {
-      margin-bottom: 2rem;
-    }
-    .price-card.featured .price-header h3 {
-      color: var(--secondary);
-    }
-    .price-amount {
-      font-size: 3.2rem;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1;
-    }
-    .price-period { 
-      font-size: 1rem; 
-      color: var(--text-secondary); 
-      margin-bottom: 2rem;
-    }
-    .price-features {
-      list-style: none;
-      margin: 2rem 0 2.5rem;
-      text-align: left;
-    }
-    .price-features li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .price-features li:last-child { border-bottom: none; }
-    .price-features i { 
-      width: 20px; 
-      color: var(--success); 
-      font-size: 0.9rem;
-    }
-    .cta-pricing {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s;
-    }
-    .cta-pricing:hover { 
-      background: #1e40af;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-heavy);
-    }
-
-    /* API DOCS */
-    .api-docs {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      margin-top: 4rem;
-      box-shadow: var(--shadow-light);
-    }
-    .api-docs h3 {
-      color: var(--primary);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 1.5rem;
-      font-size: 1.3rem;
-    }
-    .code-block {
-      background: #1e293b;
-      color: #e2e8f0;
-      padding: 1.5rem;
-      border-radius: 10px;
-      font-family: 'Monaco', 'Consolas', monospace;
-      font-size: 0.9rem;
-      margin: 1.5rem 0;
-      overflow-x: auto;
-    }
-    .code-block .header {
-      color: #94a3b8;
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
+      font-weight: 700;
     }
 
-    /* FOOTER */
-    footer {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 3rem 0 1.5rem;
-      margin-top: 80px;
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
     }
-    .footer-content {
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: var(--text-dark);
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(244, 162, 97, 0.4);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(244, 162, 97, 0.6);
+    }
+
+    /* Research Areas */
+    .research-areas {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .tab-btn {
+      padding: 20px;
+      background: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    /* Experts */
+    .experts {
+      padding: 100px 0;
+    }
+
+    .expert-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-section h3 {
-      color: white;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .footer-section p,
-    .footer-section a {
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-    .footer-section a:hover { color: white; }
-    .test-key {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-family: 'Monaco', monospace;
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      word-break: break-all;
+      margin-top: 4rem;
     }
 
+    .expert-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .expert-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .expert-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--secondary-color);
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-link {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent-color);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .dashboard-grid,
-      .pricing-grid,
-      .features-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 1rem; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .tabs {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* RTL Support */
+    body.ar .tab-btn {
+      direction: rtl;
+    }
+
+    body.ar .expert-grid {
+      direction: rtl;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- Header -->
   <header>
-    <nav class="nav">
-      <a href="#" class="logo">
-        <i class="fas fa-layer-group"></i>
-        CERSS SAHARA
-      </a>
-      <div class="nav-links">
-        <a href="#hero" class="active" onclick="setActiveNav(this)">Accueil</a>
-        <a href="#dashboard" onclick="setActiveNav(this)">Live Alerts</a>
-        <a href="#api" onclick="setActiveNav(this)">API Docs</a>
-        <a href="#pricing" onclick="setActiveNav(this)">Tarifs</a>
+    <nav class="container">
+      <a href="#" class="logo">CERSS SAHARA</a>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
       </div>
-      <a href="#pricing" class="cta-header">
-        <i class="fas fa-key"></i> Clé API
-      </a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section id="hero" class="hero">
-    <div class="hero-container">
-      <div class="hero-badge">
-        <i class="fas fa-crown"></i>
-        Think Tank Stratégique Dakhla-Mauritanie
-      </div>
-      <h1>Alertes d'Investissement<br><span style="color: var(--secondary);">en Temps Réel</span></h1>
-      <p class="hero-subtitle">
-        API institutionnelle pour les États, banques et entreprises stratégiques. 
-        Couverture complète phosphates, pêche, sécurité et mines (98% précision).
-      </p>
-      <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-number">247+</div>
-          <div class="stat-label">Alertes critiques/an</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">98%</div>
-          <div class="stat-label">Précision vérifiée</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">12</div>
-          <div class="stat-label">Univers spécialisés</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">47</div>
-          <div class="stat-label">Institutions clientes</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DASHBOARD -->
-  <section id="dashboard" class="section">
+  <!-- Hero -->
+  <section class="hero">
     <div class="container">
-      <div class="section-header">
-        <h2>Alertes Actives</h2>
-        <p>Flux en temps réel des signaux critiques (phosphates, pêche Dakhla, sécurité)</p>
-      </div>
-      <div class="dashboard-grid">
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <i class="fas fa-bell"></i>
-              Dernières Alertes (24h)
-            </div>
-            <button class="refresh-btn" onclick="refreshAlerts()">
-              <i class="fas fa-sync-alt"></i> Actualiser
-            </button>
-          </div>
-          <div class="alerts-container" id="alerts-container">
-            <!-- Contenu généré par JS -->
-          </div>
-        </div>
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">
-              <i class="fas fa-chart-line"></i>
-              Risk Scores Actuels
-            </div>
-          </div>
-          <div style="padding: 0 2rem 2rem;">
-            <div class="alert-item alert-medium" style="justify-content: space-between;">
-              <span>Phosphates OCP</span>
-              <strong style="color: var(--warning);">42/100</strong>
-            </div>
-            <div class="alert-item alert-high" style="justify-content: space-between;">
-              <span>Pêche Dakhla</span>
-              <strong style="color: var(--danger);">68/100</strong>
-            </div>
-            <div class="alert-item alert-low" style="justify-content: space-between;">
-              <span>Mines Mauritanie</span>
-              <strong style="color: var(--success);">29/100</strong>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h1 id="hero-title">Strategic Analysis & Forecasting Western Sahara-Sahel</h1>
+      <p id="hero-desc">CERSS SAHARA provides rigorous geopolitical analysis and strategic foresight on Western Sahara policies, regional dynamics, and Sahel security challenges. Branch of CERSS Rabat.</p>
+      <a href="#contact" class="cta-btn" id="cta-text">Contact Our Experts</a>
     </div>
   </section>
 
-  <!-- API FEATURES -->
-  <section id="api" class="section">
+  <!-- Research Areas -->
+  <section class="research-areas">
     <div class="container">
-      <div class="section-header">
-        <h2>CERSS Alerts API</h2>
-        <p>Interface institutionnelle sécurisée. 99.9% uptime. Intégration en 5 minutes.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Alertes Temps Réel</h3>
-          <p>Flux continu des événements critiques : production OCP, piraterie Dakhla, permis miniers Mauritanie.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>Scores de Risque</h3>
-          <p>Indicateurs synthétiques par pays/secteur (0-100), recalculés toutes les 4h.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-lock"></i></div>
-          <h3>Sécurité Institutionnelle</h3>
-          <p>Clés API par client, quotas, rate limiting, logs d'audit conformes RGPD.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-history"></i></div>
-          <h3>Historique Complet</h3>
-          <p>Archive 24 mois pour backtesting et analyse des patterns stratégiques.</p>
-        </div>
+      <h2 class="section-title" id="research-title">Research Areas</h2>
+      
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="sahara">Sahara Occidental</button>
+        <button class="tab-btn" data-tab="regional">Regional Geopolitics</button>
+        <button class="tab-btn" data-tab="sahel">Sahel Crises</button>
+        <button class="tab-btn" data-tab="prospective">Strategic Foresight</button>
       </div>
 
-      <div class="api-docs">
-        <h3>Intégration en 30 secondes</h3>
-        <div class="code-block">
-          <div class="header">Récupérer les alertes phosphates :</div>
-          <pre>de>curl "https://api.cerss-sahara.com/api/alerts?universe=phosphates" \
--H "x-api-key: cerss-your-key-here"</code></pre>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="#pricing" class="cta-header" onclick="scrollTo('pricing')" style="display: inline-block;">
-            <i class="fas fa-key"></i> Obtenir clé test gratuite
-          </a>
-        </div>
+      <div id="sahara" class="tab-content active">
+        <h3>Political Status & Negotiations</h3>
+        <p id="sahara-desc">Analysis of political status, MINURSO negotiations, regional dynamics, and economic development opportunities in Western Sahara.</p>
+      </div>
+
+      <div id="regional" class="tab-content">
+        <h3>Foreign Presences & Integration</h3>
+        <p id="regional-desc">Mapping foreign military and economic presences, regional integration efforts, and migration flows across Maghreb-Atlantic axis.</p>
+      </div>
+
+      <div id="sahel" class="tab-content">
+        <h3>Terrorism & Governance</h3>
+        <p id="sahel-desc">Security threats analysis, governance failures, climate impacts, and resource conflicts driving Sahel instability.</p>
+      </div>
+
+      <div id="prospective" class="tab-content">
+        <h3>Future Scenarios</h3>
+        <p id="prospective-desc">Strategic foresight modeling, opportunity windows identification, and policy recommendations for decision-makers.</p>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" class="section">
+  <!-- Experts -->
+  <section class="experts">
     <div class="container">
-      <div class="section-header">
-        <h2>Tarification Institutionnelle</h2>
-        <p>Plans adaptés aux États, banques et entreprises stratégiques. Test gratuit 14 jours.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="price-header">
-            <h3>TEST</h3>
-            <div class="price-amount">0€</div>
-            <div class="price-period">/mois</div>
-          </div>
-          <ul class="price-features">
-            <li><i class="fas fa-check"></i> 1 000 requêtes/mois</li>
-            <li><i class="fas fa-check"></i> Univers Phosphates</li>
-            <li><i class="fas fa-check"></i> Alertes temps réel</li>
-            <li><i class="fas fa-times"></i> Pas d'historique</li>
-          </ul>
-          <button class="cta-pricing" onclick="getTestKey()">Démarrer test gratuit</button>
+      <h2 class="section-title" id="experts-title">Our Experts</h2>
+      <div class="expert-grid">
+        <div class="expert-card">
+          <div class="expert-photo"><i class="fas fa-user"></i></div>
+          <h4 id="expert1-name">Dr. Ahmed El Khattabi</h4>
+          <p id="expert1-role">Director - Geopolitics</p>
+          <p id="expert1-bio">25+ years analyzing Western Sahara and Sahel security dynamics.</p>
         </div>
-        <div class="price-card featured">
-          <div class="price-header">
-            <h3><i class="fas fa-crown"></i> DA KHLA PRO</h3>
-            <div class="price-amount">999€</div>
-            <div class="price-period">/mois</div>
-          </div>
-          <ul class="price-features">
-            <li><i class="fas fa-check"></i> 150 000 requêtes/mois</li>
-            <li><i class="fas fa-check"></i> 3 univers complets</li>
-            <li><i class="fas fa-check"></i> Risk scores + historique</li>
-            <li><i class="fas fa-check"></i> Support prioritaire 24h</li>
-          </ul>
-          <button class="cta-pricing" onclick="buyProPlan()">Souscrire Pro</button>
+        <div class="expert-card">
+          <div class="expert-photo"><i class="fas fa-user"></i></div>
+          <h4 id="expert2-name">Fatima Zahra Benslimane</h4>
+          <p id="expert2-role">Senior Fellow - Regional Integration</p>
+          <p id="expert2-bio">Expert in Morocco-EU-Atlantic relations and migration governance.</p>
         </div>
-        <div class="price-card">
-          <div class="price-header">
-            <h3>ENTERPRISE</h3>
-            <div class="price-amount">4 999€+</div>
-            <div class="price-period">/mois</div>
-          </div>
-          <ul class="price-features">
-            <li><i class="fas fa-check"></i> Requêtes illimitées</li>
-            <li><i class="fas fa-check"></i> Univers personnalisés</li>
-            <li><i class="fas fa-check"></i> Webhooks Slack/Teams</li>
-            <li><i class="fas fa-check"></i> Équipe dédiée</li>
-          </ul>
-          <button class="cta-pricing" onclick="contactEnterprise()">Demander démo</button>
+        <div class="expert-card">
+          <div class="expert-photo"><i class="fas fa-user"></i></div>
+          <h4 id="expert3-name">Mohamed Ould Brahim</h4>
+          <p id="expert3-role">Sahel Security Specialist</p>
+          <p id="expert3-bio">Former UN analyst on terrorism and resource conflicts.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Contact Modal Trigger -->
+  <button style="display:none;" id="contact-trigger">Open Contact</button>
+
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="modal-title">Contact CERSS SAHARA</h3>
+      <form id="contact-form">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name" id="name-label">Name</label>
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email" id="email-label">Email</label>
+        <textarea id="message" placeholder=" " rows="5" required></textarea>
+        <label for="message" id="msg-label">Message</label>
+        <button type="submit" class="cta-btn" id="submit-text">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer>
-    <div class="container footer-content">
-      <div class="footer-section">
-        <h3>CERSS SAHARA</h3>
-        <p>Dakhla Investment & Risk Laboratory</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">
-          Think tank stratégique dédié aux investissements Sahara-Mauritanie
-        </p>
-      </div>
-      <div class="footer-section">
-        <h3>Services</h3>
-        <p><a href="#api">Alerts API</a></p>
-        <p><a href="#dashboard">Live Dashboard</a></p>
-        <p><a href="#pricing">Tarification</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Contact Institutionnel</h3>
-        <p>demo@cerss-sahara.com</p>
-        <p>+212 6 XX XX XX XX</p>
-        <div class="test-key">
-          <strong>Clé test gratuite :</strong><br>
-          cerss-test-basic-1234567890abcdef
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <h4>CERSS SAHARA</h4>
+          <p>Branch of <a href="https://cerss.org/" class="footer-link" target="_blank">CERSS Rabat</a></p>
+        </div>
+        <div>
+          <h4>Research</h4>
+          <a href="#sahara" class="footer-link">Sahara Occidental</a>
+          <a href="#regional" class="footer-link">Regional Geopolitics</a>
+          <a href="#sahel" class="footer-link">Sahel Crises</a>
+          <a href="#prospective" class="footer-link">Foresight</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:info@cersssahara.org" class="footer-link">info@cersssahara.org</a>
+          <a href="#" class="footer-link" id="phone-text">+212 537 77 12 34</a>
         </div>
       </div>
-    </div>
-    <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 0.85rem;">
-      © 2025 CERSS SAHARA. Déployé sur GitHub Pages + Supabase. 
-      Conforme RGPD | 99.9% uptime garanti.
+      <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+        <p>&copy; 2025 CERSS SAHARA. All rights reserved. | <a href="#" class="footer-link">Privacy Policy</a></p>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Données d'alertes (simulation Supabase)
-    const alertsData = [
-      {
-        id: 'PHOS-251221-001',
-        title: 'OCP Youssoufia',
-        universe: 'phosphates',
-        level: 'high',
-        message: 'Suspension production -15% (conflit syndical)',
-        time: '16:45',
-        impact: 'Prix spot +8%'
+    // Language System
+    const translations = {
+      fr: {
+        'hero-title': 'Analyse et Prévisions Stratégiques Sahara-Sahel',
+        'hero-desc': 'CERSS SAHARA fournit des analyses géopolitiques rigoureuses et des prévisions stratégiques sur les politiques du Sahara occidental, les dynamiques régionales et les défis sécuritaires du Sahel. Branche du CERSS Rabat.',
+        'cta-text': 'Contacter nos Experts',
+        'research-title': 'Axes de Recherche',
+        'sahara': 'Sahara Occidental',
+        'sahara-desc': 'Analyse du statut politique, négociations MINURSO, dynamiques régionales et opportunités de développement économique au Sahara occidental.',
+        'regional': 'Géopolitique Régionale',
+        'regional-desc': 'Cartographie des présences étrangères, efforts d\'intégration régionale et flux migratoires sur l\'axe Maghreb-Atlantique.',
+        'sahel': 'Crises du Sahel',
+        'sahel-desc': 'Analyse des menaces sécuritaires, échecs de gouvernance, impacts climatiques et conflits de ressources alimentant l\'instabilité sahélienne.',
+        'prospective': 'Prospective Stratégique',
+        'prospective-desc': 'Modélisation de scénarios futurs, identification de fenêtres d\'opportunité et recommandations politiques pour décideurs.',
+        'experts-title': 'Nos Experts',
+        'expert1-name': 'Dr. Ahmed El Khattabi',
+        'expert1-role': 'Directeur - Géopolitique',
+        'expert1-bio': '25+ ans d\'analyse des dynamiques Sahara-Sahel.',
+        'expert2-name': 'Fatima Zahra Benslimane',
+        'expert2-role': 'Senior Fellow - Intégration Régionale',
+        'expert2-bio': 'Experte des relations Maroc-UE-Atlantique et gouvernance migratoire.',
+        'expert3-name': 'Mohamed Ould Brahim',
+        'expert3-role': 'Spécialiste Sécurité Sahel',
+        'expert3-bio': 'Ancien analyste ONU sur terrorisme et conflits de ressources.',
+        'modal-title': 'Contactez CERSS SAHARA',
+        'name-label': 'Nom',
+        'email-label': 'Email',
+        'msg-label': 'Message',
+        'submit-text': 'Envoyer le Message',
+        'phone-text': '+212 537 77 12 34'
       },
-      {
-        id: 'SEC-251221-002',
-        title: 'Piraterie Dakhla',
-        universe: 'securite',
-        level: 'critical',
-        message: 'Attaque chalutier espagnol (35 milles)',
-        time: '14:30',
-        impact: 'Primes assurance +40%'
+      en: {
+        'hero-title': 'Strategic Analysis & Forecasting Western Sahara-Sahel',
+        'hero-desc': 'CERSS SAHARA provides rigorous geopolitical analysis and strategic foresight on Western Sahara policies, regional dynamics, and Sahel security challenges. Branch of CERSS Rabat.',
+        'cta-text': 'Contact Our Experts',
+        'research-title': 'Research Areas',
+        'sahara': 'Western Sahara',
+        'sahara-desc': 'Analysis of political status, MINURSO negotiations, regional dynamics, and economic development opportunities.',
+        'regional': 'Regional Geopolitics',
+        'regional-desc': 'Mapping foreign presences, regional integration efforts, and migration flows across Maghreb-Atlantic axis.',
+        'sahel': 'Sahel Crises',
+        'sahel-desc': 'Security threats analysis, governance failures, climate impacts, and resource conflicts.',
+        'prospective': 'Strategic Foresight',
+        'prospective-desc': 'Future scenarios modeling, opportunity windows identification, and policy recommendations.',
+        'experts-title': 'Our Experts',
+        'expert1-name': 'Dr. Ahmed El Khattabi',
+        'expert1-role': 'Director - Geopolitics',
+        'expert1-bio': '25+ years analyzing Western Sahara-Sahel dynamics.',
+        'expert2-name': 'Fatima Zahra Benslimane',
+        'expert2-role': 'Senior Fellow - Regional Integration',
+        'expert2-bio': 'Expert in Morocco-EU-Atlantic relations and migration governance.',
+        'expert3-name': 'Mohamed Ould Brahim',
+        'expert3-role': 'Sahel Security Specialist',
+        'expert3-bio': 'Former UN analyst on terrorism and resource conflicts.',
+        'modal-title': 'Contact CERSS SAHARA',
+        'name-label': 'Name',
+        'email-label': 'Email',
+        'msg-label': 'Message',
+        'submit-text': 'Send Message',
+        'phone-text': '+212 537 77 12 34'
       },
-      {
-        id: 'FISH-251221-003',
-        title: 'Quota Sardine',
-        universe: 'peche',
-        level: 'medium',
-        message: 'Réduction quotas Dakhla 25%',
-        time: '11:20',
-        impact: 'Prix UE +12-18%'
-      },
-      {
-        id: 'MINE-251221-004',
-        title: 'Mines Mauritanie',
-        universe: 'mines',
-        level: 'high',
-        message: 'Grève Guelb Moghrein (or/cuivre)',
-        time: '09:15',
-        impact: 'Production -20%'
+      ar: {
+        'hero-title': 'تحليل استراتيجي وتوقعات صحراء غربية-ساحل',
+        'hero-desc': 'يقدم CERSS SAHARA تحليلات جيوسياسية صارمة وتوقعات استراتيجية حول سياسات الصحراء الغربية، والديناميكيات الإقليمية، وتحديات الأمن في الساحل. فرع مركز CERSS الرباط.',
+        'cta-text': 'تواصل مع خبرائنا',
+        'research-title': 'مجالات البحث',
+        'sahara': 'الصحراء الغربية',
+        'sahara-desc': 'تحليل الوضع السياسي، مفاوضات MINURSO، والديناميكيات الإقليمية وفرص التنمية الاقتصادية.',
+        'regional': 'الجيوسياسة الإقليمية',
+        'regional-desc': 'رسم خريطة للوجود الأجنبي وجهود التكامل الإقليمي وتدفقات الهجرة.',
+        'sahel': 'أزمات الساحل',
+        'sahel-desc': 'تحليل التهديدات الأمنية، فشل الحوكمة، وتأثيرات المناخ والصراعات على الموارد.',
+        'prospective': 'التوقعات الاستراتيجية',
+        'prospective-desc': 'نمذجة السيناريوهات المستقبلية، تحديد نوافذ الفرص والتوصيات السياسية.',
+        'experts-title': 'خبراؤنا',
+        'expert1-name': 'د. أحمد الخطابي',
+        'expert1-role': 'المدير - الجيوسياسة',
+        'expert1-bio': 'أكثر من 25 عاماً في تحليل ديناميكيات الصحراء الغربية-الساحل.',
+        'expert2-name': 'فاطمة الزهراء بنسليمان',
+        'expert2-role': 'باحثة أولى - التكامل الإقليمي',
+        'expert2-bio': 'خبيرة في العلاقات المغرب-الاتحاد الأوروبي-الأطلسي وحوكمة الهجرة.',
+        'expert3-name': 'محمد ولد براهيم',
+        'expert3-role': 'أخصائي أمن الساحل',
+        'expert3-bio': 'محلل سابق في الأمم المتحدة حول الإرهاب وصراعات الموارد.',
+        'modal-title': 'تواصل مع CERSS SAHARA',
+        'name-label': 'الاسم',
+        'email-label': 'البريد الإلكتروني',
+        'msg-label': 'الرسالة',
+        'submit-text': 'إرسال الرسالة',
+        'phone-text': '+212 537 77 12 34'
       }
-    ];
+    };
 
-    function renderAlerts() {
-      const container = document.getElementById('alerts-container');
-      container.innerHTML = alertsData.map(alert => `
-        <div class="alert-item alert-${alert.level}">
-          <div class="alert-icon">
-            <i class="fas fa-${alert.level === 'critical' ? 'exclamation-triangle' : 
-                               alert.level === 'high' ? 'exclamation-circle' : 
-                               alert.level === 'medium' ? 'info-circle' : 'check-circle'}"></i>
-          </div>
-          <div class="alert-content">
-            <div class="alert-title">${alert.title}</div>
-            <div class="alert-message">${alert.message}</div>
-            <div class="alert-meta">
-              <span>${alert.universe}</span>
-              <span>${alert.time}</span>
-              <span style="color: var(--${alert.level === 'critical' ? 'danger' : 
-                                        alert.level === 'high' ? 'warning' : 
-                                        alert.level === 'medium' ? 'warning' : 'success'})">
-                ${alert.level.toUpperCase()}
-              </span>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function setActiveNav(activeLink) {
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-      });
-      activeLink.classList.add('active');
-      
-      const targetId = activeLink.getAttribute('href').substring(1);
-      setTimeout(() => {
-        document.getElementById(targetId)?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
+    // Language Switcher
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update HTML lang and class
+        document.documentElement.lang = lang;
+        document.body.className = lang === 'ar' ? 'ar' : '';
+        
+        // Update all translations
+        Object.keys(translations[lang]).forEach(key => {
+          const element = document.getElementById(key);
+          if (element) element.textContent = translations[lang][key];
         });
-      }, 100);
-    }
-
-    function refreshAlerts() {
-      // Simuler fetch API Supabase
-      setTimeout(() => {
-        renderAlerts();
-      }, 800);
-    }
-
-    function getTestKey() {
-      navigator.clipboard.writeText('cerss-test-basic-1234567890abcdef');
-      alert('✅ Clé API TEST copiée dans le presse-papiers !\n\nValable 14 jours - 1 000 requêtes gratuites');
-    }
-
-    function buyProPlan() {
-      alert('🎯 Souscription Pro lancée\n\nProchaines étapes :\n1. Paiement sécurisé Stripe\n2. Clé API instantanée\n3. Onboarding 24h\n\nContact: demo@cerss-sahara.com');
-    }
-
-    function contactEnterprise() {
-      window.location.href = 'mailto:demo@cerss-sahara.com?subject=Démo Enterprise CERSS API&body=Bonjour,\n\nJe souhaite une démo personnalisée pour notre institution.';
-    }
-
-    // Initialisation
-    window.addEventListener('load', () => {
-      renderAlerts();
-      // Auto-refresh toutes les 30 secondes
-      setInterval(refreshAlerts, 30000);
+      });
     });
 
-    // Smooth scroll pour tous les liens
+    // Tabs functionality
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        
+        // Update active tab
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('contact-modal');
+    const trigger = document.querySelector('.cta-btn');
+    const closeBtn = document.querySelector('.close');
+
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! We will respond within 24 hours.');
+      modal.style.display = 'none';
+      e.target.reset();
+    });
+
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
